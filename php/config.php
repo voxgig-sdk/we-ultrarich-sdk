@@ -1,0 +1,424 @@
+<?php
+declare(strict_types=1);
+
+// WeUltrarich SDK configuration
+
+class WeUltrarichConfig
+{
+    public static function make_config(): array
+    {
+        return [
+            "main" => [
+                "name" => "WeUltrarich",
+            ],
+            "feature" => [
+                "test" => [
+          'options' => [
+            'active' => false,
+          ],
+        ],
+            ],
+            "options" => [
+                "base" => "https://api.wegtultrarich.org/v1",
+                "headers" => [
+          'content-type' => 'application/json',
+        ],
+                "entity" => [
+                    "comparison" => [],
+                    "discovery" => [],
+                    "wealth_expression" => [],
+                ],
+            ],
+            "entity" => [
+        'comparison' => [
+          'fields' => [
+            [
+              'active' => true,
+              'name' => 'data',
+              'req' => true,
+              'type' => '`$OBJECT`',
+              'index$' => 0,
+            ],
+            [
+              'active' => true,
+              'name' => 'status',
+              'req' => true,
+              'type' => '`$STRING`',
+              'index$' => 1,
+            ],
+          ],
+          'name' => 'comparison',
+          'op' => [
+            'load' => [
+              'input' => 'data',
+              'name' => 'load',
+              'points' => [
+                [
+                  'active' => true,
+                  'args' => [
+                    'query' => [
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'expression',
+                        'orig' => 'expression',
+                        'reqd' => true,
+                        'type' => '`$STRING`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'frequency',
+                        'orig' => 'frequency',
+                        'reqd' => false,
+                        'type' => '`$STRING`',
+                      ],
+                      [
+                        'active' => true,
+                        'example' => 20,
+                        'kind' => 'query',
+                        'name' => 'period',
+                        'orig' => 'period',
+                        'reqd' => false,
+                        'type' => '`$NUMBER`',
+                      ],
+                      [
+                        'active' => true,
+                        'example' => 0.01,
+                        'kind' => 'query',
+                        'name' => 'rate',
+                        'orig' => 'rate',
+                        'reqd' => false,
+                        'type' => '`$NUMBER`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'spend',
+                        'orig' => 'spend',
+                        'reqd' => false,
+                        'type' => '`$ANY`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'type_of_item',
+                        'orig' => 'type_of_item',
+                        'reqd' => false,
+                        'type' => '`$STRING`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'type_of_money',
+                        'orig' => 'type_of_money',
+                        'reqd' => false,
+                        'type' => '`$STRING`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'wealth_their',
+                        'orig' => 'wealth_their',
+                        'reqd' => true,
+                        'type' => '`$ANY`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'wealth_your',
+                        'orig' => 'wealth_your',
+                        'reqd' => true,
+                        'type' => '`$ANY`',
+                      ],
+                    ],
+                  ],
+                  'method' => 'GET',
+                  'orig' => '/comparison',
+                  'parts' => [
+                    'comparison',
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'expression',
+                      'frequency',
+                      'period',
+                      'rate',
+                      'spend',
+                      'type_of_item',
+                      'type_of_money',
+                      'wealth_their',
+                      'wealth_your',
+                    ],
+                  ],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'index$' => 0,
+                ],
+              ],
+              'key$' => 'load',
+            ],
+          ],
+          'relations' => [
+            'ancestors' => [],
+          ],
+        ],
+        'discovery' => [
+          'fields' => [
+            [
+              'active' => true,
+              'name' => 'route',
+              'req' => true,
+              'type' => '`$STRING`',
+              'index$' => 0,
+            ],
+          ],
+          'name' => 'discovery',
+          'op' => [
+            'list' => [
+              'input' => 'data',
+              'name' => 'list',
+              'points' => [
+                [
+                  'active' => true,
+                  'args' => [],
+                  'method' => 'GET',
+                  'orig' => '/expressions',
+                  'parts' => [
+                    'expressions',
+                  ],
+                  'select' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'index$' => 0,
+                ],
+              ],
+              'key$' => 'list',
+            ],
+          ],
+          'relations' => [
+            'ancestors' => [],
+          ],
+        ],
+        'wealth_expression' => [
+          'fields' => [
+            [
+              'active' => true,
+              'name' => 'data',
+              'req' => true,
+              'type' => '`$OBJECT`',
+              'index$' => 0,
+            ],
+            [
+              'active' => true,
+              'name' => 'status',
+              'req' => true,
+              'type' => '`$STRING`',
+              'index$' => 1,
+            ],
+          ],
+          'name' => 'wealth_expression',
+          'op' => [
+            'load' => [
+              'input' => 'data',
+              'name' => 'load',
+              'points' => [
+                [
+                  'active' => true,
+                  'args' => [
+                    'query' => [
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'frequency',
+                        'orig' => 'frequency',
+                        'reqd' => true,
+                        'type' => '`$STRING`',
+                      ],
+                      [
+                        'active' => true,
+                        'example' => 20,
+                        'kind' => 'query',
+                        'name' => 'period',
+                        'orig' => 'period',
+                        'reqd' => true,
+                        'type' => '`$NUMBER`',
+                      ],
+                      [
+                        'active' => true,
+                        'example' => 0.01,
+                        'kind' => 'query',
+                        'name' => 'rate',
+                        'orig' => 'rate',
+                        'reqd' => true,
+                        'type' => '`$NUMBER`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'wealth',
+                        'orig' => 'wealth',
+                        'reqd' => true,
+                        'type' => '`$ANY`',
+                      ],
+                    ],
+                  ],
+                  'method' => 'GET',
+                  'orig' => '/growthOfCompoundInterest',
+                  'parts' => [
+                    'growthOfCompoundInterest',
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'frequency',
+                      'period',
+                      'rate',
+                      'wealth',
+                    ],
+                  ],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'index$' => 0,
+                ],
+                [
+                  'active' => true,
+                  'args' => [
+                    'query' => [
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'spend',
+                        'orig' => 'spend',
+                        'reqd' => true,
+                        'type' => '`$ANY`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'wealth',
+                        'orig' => 'wealth',
+                        'reqd' => true,
+                        'type' => '`$ANY`',
+                      ],
+                    ],
+                  ],
+                  'method' => 'GET',
+                  'orig' => '/durationOfDailySpend',
+                  'parts' => [
+                    'durationOfDailySpend',
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'spend',
+                      'wealth',
+                    ],
+                  ],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'index$' => 1,
+                ],
+                [
+                  'active' => true,
+                  'args' => [
+                    'query' => [
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'type_of_item',
+                        'orig' => 'type_of_item',
+                        'reqd' => true,
+                        'type' => '`$STRING`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'wealth',
+                        'orig' => 'wealth',
+                        'reqd' => true,
+                        'type' => '`$ANY`',
+                      ],
+                    ],
+                  ],
+                  'method' => 'GET',
+                  'orig' => '/numberOfItems',
+                  'parts' => [
+                    'numberOfItems',
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'type_of_item',
+                      'wealth',
+                    ],
+                  ],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'index$' => 2,
+                ],
+                [
+                  'active' => true,
+                  'args' => [
+                    'query' => [
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'type_of_money',
+                        'orig' => 'type_of_money',
+                        'reqd' => true,
+                        'type' => '`$STRING`',
+                      ],
+                      [
+                        'active' => true,
+                        'kind' => 'query',
+                        'name' => 'wealth',
+                        'orig' => 'wealth',
+                        'reqd' => true,
+                        'type' => '`$ANY`',
+                      ],
+                    ],
+                  ],
+                  'method' => 'GET',
+                  'orig' => '/heightOfMoneyStack',
+                  'parts' => [
+                    'heightOfMoneyStack',
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'type_of_money',
+                      'wealth',
+                    ],
+                  ],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'index$' => 3,
+                ],
+              ],
+              'key$' => 'load',
+            ],
+          ],
+          'relations' => [
+            'ancestors' => [],
+          ],
+        ],
+      ],
+        ];
+    }
+
+
+    public static function make_feature(string $name)
+    {
+        require_once __DIR__ . '/features.php';
+        return WeUltrarichFeatures::make_feature($name);
+    }
+}

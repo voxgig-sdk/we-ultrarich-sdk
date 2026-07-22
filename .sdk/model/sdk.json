@@ -1,0 +1,982 @@
+{
+  "def": "we->-ultrarich_0.1.0.yaml",
+  "main": {
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "comparison": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "data",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "status",
+              "req": true,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "comparison",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "expression",
+                        "orig": "expression",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "frequency",
+                        "orig": "frequency",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 20,
+                        "kind": "query",
+                        "name": "period",
+                        "orig": "period",
+                        "reqd": false,
+                        "type": "`$NUMBER`"
+                      },
+                      {
+                        "active": true,
+                        "example": 0.01,
+                        "kind": "query",
+                        "name": "rate",
+                        "orig": "rate",
+                        "reqd": false,
+                        "type": "`$NUMBER`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "spend",
+                        "orig": "spend",
+                        "reqd": false,
+                        "type": "`$ANY`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "type_of_item",
+                        "orig": "type_of_item",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "type_of_money",
+                        "orig": "type_of_money",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "wealth_their",
+                        "orig": "wealth_their",
+                        "reqd": true,
+                        "type": "`$ANY`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "wealth_your",
+                        "orig": "wealth_your",
+                        "reqd": true,
+                        "type": "`$ANY`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/comparison",
+                  "parts": [
+                    "comparison"
+                  ],
+                  "select": {
+                    "exist": [
+                      "expression",
+                      "frequency",
+                      "period",
+                      "rate",
+                      "spend",
+                      "type_of_item",
+                      "type_of_money",
+                      "wealth_their",
+                      "wealth_your"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "discovery": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "route",
+              "req": true,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "discovery",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/expressions",
+                  "parts": [
+                    "expressions"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "wealth_expression": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "data",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "status",
+              "req": true,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "wealth_expression",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "frequency",
+                        "orig": "frequency",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 20,
+                        "kind": "query",
+                        "name": "period",
+                        "orig": "period",
+                        "reqd": true,
+                        "type": "`$NUMBER`"
+                      },
+                      {
+                        "active": true,
+                        "example": 0.01,
+                        "kind": "query",
+                        "name": "rate",
+                        "orig": "rate",
+                        "reqd": true,
+                        "type": "`$NUMBER`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "wealth",
+                        "orig": "wealth",
+                        "reqd": true,
+                        "type": "`$ANY`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/growthOfCompoundInterest",
+                  "parts": [
+                    "growthOfCompoundInterest"
+                  ],
+                  "select": {
+                    "exist": [
+                      "frequency",
+                      "period",
+                      "rate",
+                      "wealth"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "spend",
+                        "orig": "spend",
+                        "reqd": true,
+                        "type": "`$ANY`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "wealth",
+                        "orig": "wealth",
+                        "reqd": true,
+                        "type": "`$ANY`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/durationOfDailySpend",
+                  "parts": [
+                    "durationOfDailySpend"
+                  ],
+                  "select": {
+                    "exist": [
+                      "spend",
+                      "wealth"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "type_of_item",
+                        "orig": "type_of_item",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "wealth",
+                        "orig": "wealth",
+                        "reqd": true,
+                        "type": "`$ANY`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/numberOfItems",
+                  "parts": [
+                    "numberOfItems"
+                  ],
+                  "select": {
+                    "exist": [
+                      "type_of_item",
+                      "wealth"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "type_of_money",
+                        "orig": "type_of_money",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "wealth",
+                        "orig": "wealth",
+                        "reqd": true,
+                        "type": "`$ANY`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/heightOfMoneyStack",
+                  "parts": [
+                    "heightOfMoneyStack"
+                  ],
+                  "select": {
+                    "exist": [
+                      "type_of_money",
+                      "wealth"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicComparisonFlow": {
+          "active": true,
+          "entity": "comparison",
+          "key$": "BasicComparisonFlow",
+          "kind": "basic",
+          "name": "BasicComparisonFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "comparison_ref01",
+                "srcdatavar": "comparison_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-comparison_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicDiscoveryFlow": {
+          "active": true,
+          "entity": "discovery",
+          "key$": "BasicDiscoveryFlow",
+          "kind": "basic",
+          "name": "BasicDiscoveryFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "discovery_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicWealthExpressionFlow": {
+          "active": true,
+          "entity": "wealth_expression",
+          "key$": "BasicWealthExpressionFlow",
+          "kind": "basic",
+          "name": "BasicWealthExpressionFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "wealth_expression_ref01",
+                "srcdatavar": "wealth_expression_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-wealth_expression_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "info": {
+        "auth": false,
+        "contact": {
+          "email": "info@wegtultrarich.org",
+          "name": "Support",
+          "url": "https://wegtultrarich.org/faq.html"
+        },
+        "description": "How much is billions or trillions of dollars? Understand the scale of extreme wealth inequality by viewing Duration Of Daily Spend (Daily Spending), Height Of Stacked Money (Physical Size), Number Of Items Paid For (Purchasing Power), or Growth Of Compound Interest (Compound Interest).\n\nAn MCP (Model Context Protocol) server exposing these operations as agent tools is available at https://api.wegtultrarich.org/mcp.\n\nFree for any use, including commercial. Results are licensed CC BY 4.0 — please use the attribution \"Source: We > Ultrarich (wegtultrarich.org).\" The API's source code is not open source; view [LICENSE.md](https://wegtultrarich.org/LICENSE.md).\n",
+        "license": {
+          "name": "CC BY 4.0",
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "meta_source": "https://www.freepublicapis.com",
+        "servers": [
+          {
+            "description": "Main (Production) Server",
+            "url": "https://api.wegtultrarich.org/v1"
+          }
+        ],
+        "summary": "How much is billions or trillions of dollars?",
+        "title": "We > Ultrarich API",
+        "version": "1.2.0",
+        "website": "https://api.wegtultrarich.org/README.md",
+        "x-privacy-policy-url": "https://wegtultrarich.org/privacy-policy.html"
+      },
+      "option": {},
+      "target": {
+        "go": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "we-ultrarich"
+          },
+          "name": "go",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "we-ultrarich"
+          },
+          "name": "go-cli",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            }
+          },
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "we-ultrarich"
+          },
+          "name": "go-mcp",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            }
+          },
+          "title": "Go MCP server"
+        },
+        "lua": {
+          "active": true,
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "module": {
+            "name": "we-ultrarich"
+          },
+          "name": "lua",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "module": {
+            "name": "we-ultrarich"
+          },
+          "name": "php",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "module": {
+            "name": "we-ultrarich"
+          },
+          "name": "py",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "json": {
+              "active": true,
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
+            }
+          },
+          "ext": "rb",
+          "module": {
+            "name": "we-ultrarich"
+          },
+          "name": "rb",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "rubygems",
+              "package": "",
+              "state": "pending",
+              "url": "https://rubygems.org",
+              "vault": {
+                "alias": "gem",
+                "env": "",
+                "recipe": "gem"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "we-ultrarich"
+          },
+          "name": "ts",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "title": "TypeScript"
+        }
+      }
+    }
+  },
+  "name": "we-ultrarich",
+  "origin": "voxgig-sdk"
+}

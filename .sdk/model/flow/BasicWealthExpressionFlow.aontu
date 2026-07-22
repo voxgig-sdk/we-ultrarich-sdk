@@ -1,0 +1,28 @@
+# BasicWealthExpressionFlow
+
+main: kit: flow: BasicWealthExpressionFlow:
+{
+  entity: "wealth_expression",
+  kind: "basic",
+  name: "BasicWealthExpressionFlow",
+  step: [
+    {
+      input: {
+        ref: "wealth_expression_ref01",
+        srcdatavar: "wealth_expression_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-wealth_expression_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWealthExpressionFlow"
+}

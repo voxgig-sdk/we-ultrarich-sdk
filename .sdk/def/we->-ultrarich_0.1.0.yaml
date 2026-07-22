@@ -1,0 +1,1158 @@
+openapi: 3.0.4
+info:
+  title: We > Ultrarich API
+  description:  |
+    How much is billions or trillions of dollars? Understand the scale of extreme wealth inequality by viewing Duration Of Daily Spend (Daily Spending), Height Of Stacked Money (Physical Size), Number Of Items Paid For (Purchasing Power), or Growth Of Compound Interest (Compound Interest).
+
+    An MCP (Model Context Protocol) server exposing these operations as agent tools is available at https://api.wegtultrarich.org/mcp.
+
+    Free for any use, including commercial. Results are licensed CC BY 4.0 — please use the attribution "Source: We > Ultrarich (wegtultrarich.org)." The API's source code is not open source; view [LICENSE.md](https://wegtultrarich.org/LICENSE.md).
+  version: '1.2.0'
+  contact:
+    name: Support
+    email: info@wegtultrarich.org
+    url: https://wegtultrarich.org/faq.html
+  license:
+    name: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+  x-privacy-policy-url: "https://wegtultrarich.org/privacy-policy.html"
+externalDocs:
+  description: API Documentation
+  url: https://api.wegtultrarich.org/README.md
+
+servers:
+  - url: https://api.wegtultrarich.org/v1
+    description: Main (Production) Server
+
+# Our API is public — no authentication is required for any operation.
+security: []
+
+tags:
+  - name: Discovery
+    description: Discover (list) the available endpoints.
+  - name: Wealth Expression
+    description: Express a single wealth through one of four lenses (daily spending, physical size, purchasing power, or compound interest).
+  - name: Comparison
+    description: Compare any wealth expression for two wealths ('yours' and 'theirs') in a single call — get both results as well as the ratio between them.
+
+paths:
+  /expressions:
+    get:
+      operationId: expressions
+      summary: Available Endpoints
+      description: Returns an array of routes listing the endpoint uri paths of the four wealth expressions plus the comparison.
+      tags:
+        - Discovery
+      responses:
+        '200':
+          description: a JSON object with response data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        route:
+                          type: string
+                          description: The path to each available wealth expression.
+                      required:
+                        - "route"
+                    example:
+                      - route: "/v1/durationOfDailySpend"
+                      - route: "/v1/heightOfMoneyStack"
+                      - route: "/v1/numberOfItems"
+                      - route: "/v1/growthOfCompoundInterest"
+                      - route: "/v1/comparison"
+                required:
+                  - "status"
+                  - "data"
+        '429':
+          description: rate limit exceeded
+          headers:
+            Retry-After:
+              description: The number of seconds remaining until the rate-limit window resets.
+              schema:
+                type: integer
+                example: 60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 429
+                      message:
+                        type: string
+                        example: "Too Many Requests"
+                      details:
+                        type: string
+                        example: "Rate limit exceeded. Try again in 60 seconds."
+                      retryAfter:
+                        type: integer
+                        example: 60
+                        description: The number of seconds remaining until the rate-limit window resets.
+                    required:
+                      - "code"
+                      - "message"
+                      - "details"
+                      - "retryAfter"
+                required:
+                  - "status"
+                  - "error"
+      x-ratelimit:
+        limit: 100
+        period: 1 minute
+        unit: requests
+        scope: ip
+        shared: true
+        description: Rate limited to 100 requests per minute per IP, shared across all /v1 endpoints.
+
+  /durationOfDailySpend:
+    get:
+      operationId: durationOfDailySpend
+      summary: Duration Of Daily Spend
+      description: Given a wealth and amount, returns the duration of time a specified-wealth would last when a specified-amount was spent daily.
+      tags:
+        - Wealth Expression
+      parameters:
+        - in: query
+          name: wealth
+          required: true
+          schema:
+            oneOf:
+              - type: number
+                description: a numeric amount with or without decimal places
+                minimum: 1
+                maximum: 1000000000000000000000000
+                example: 1000000000
+              - type: string
+                description: a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol
+          description: Wealth is the amount of money to be described via this expression.
+        - in: query
+          name: spend
+          required: true
+          schema:
+            oneOf:
+              - type: number
+                description: a numeric amount with or without decimal places
+                minimum: 1
+                maximum: 1000000000000000000000000
+                example: 1000
+              - type: string
+                description: a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol
+          description: Spend is the amount of money to be spent daily (the crux of this expression).
+      responses:
+        '200':
+          description: a JSON object with response data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+                  data:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                        example: 2739.72602739726
+                        description: The value for duration of time.
+                      unit:
+                        type: string
+                        example: "years"
+                        description: The unit for duration of time.
+                      type:
+                        type: string
+                        nullable: true
+                        example: null
+                        description: This expression doesn't have any types.
+                      phrase:
+                        type: string
+                        example: "2.7 Millennia (2,740 Years)"
+                        description: A phrase of the duration of time (title-cased for use as a standalone label).
+                      sentence:
+                        type: string
+                        example: "A person with a wealth of $1,000,000,000 could spend $1,000 every day for 2.7 millennia (2,740 years)!"
+                        description: A complete sentence summarizing the expression and its duration of time result (sentence-cased for use as inline prose).
+                      scale:
+                        type: string
+                        nullable: true
+                        example: "That's approximately 1.4 times as long ago as when modern religions began to take shape in what was considered ancient history (≈4,000 BCE to 1,000 AD)."
+                        description: A complete sentence providing context for the expression and its duration of time result (sentence-cased for use as inline prose).
+                    required:
+                      - value
+                      - unit
+                      - type
+                      - phrase
+                      - sentence
+                      - scale
+                required:
+                  - "status"
+                  - "data"
+        '400':
+          description: a JSON object with error data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      message:
+                        type: string
+                        example: "Wealth Missing"
+                        description: A human-readable error message like 'Wealth Missing', 'Wealth Malformed', 'Wealth Zero', etc.
+                    required:
+                      - "code"
+                      - "message"
+                required:
+                  - "status"
+                  - "error"
+        '429':
+          description: rate limit exceeded
+          headers:
+            Retry-After:
+              description: The number of seconds remaining until the rate-limit window resets.
+              schema:
+                type: integer
+                example: 60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 429
+                      message:
+                        type: string
+                        example: "Too Many Requests"
+                      details:
+                        type: string
+                        example: "Rate limit exceeded. Try again in 60 seconds."
+                      retryAfter:
+                        type: integer
+                        example: 60
+                        description: The number of seconds remaining until the rate-limit window resets.
+                    required:
+                      - "code"
+                      - "message"
+                      - "details"
+                      - "retryAfter"
+                required:
+                  - "status"
+                  - "error"
+      x-ratelimit:
+        limit: 100
+        period: 1 minute
+        unit: requests
+        scope: ip
+        shared: true
+        description: Rate limited to 100 requests per minute per IP, shared across all /v1 endpoints.
+
+  /heightOfMoneyStack:
+    get:
+      operationId: heightOfMoneyStack
+      summary: Height Of Stacked Money
+      description: Given a wealth and type of money, returns the height of a stack of the specified-wealth in the specified-type-of-money.
+      tags:
+        - Wealth Expression
+      parameters:
+        - in: query
+          name: wealth
+          required: true
+          schema:
+            oneOf:
+              - type: number
+                description: a numeric amount with or without decimal places
+                minimum: 1
+                maximum: 1000000000000000000000000
+                example: 1000000000
+              - type: string
+                description: a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol
+          description: Wealth is the amount of money to be described via this expression.
+        - in: query
+          name: typeOfMoney
+          required: true
+          schema:
+            type: string
+            enum: ["usd_1_coin","usd_100_bill","cad_1_coin","cad_100_bill","eur_1_coin","eur_100_bill","gbp_1_coin","gbp_100_bill","cny_1_coin","cny_100_bill","inr_1_coin","inr_100_bill","krw_1_coin","krw_1000_bill","rub_1_coin","rub_100_bill","try_1_coin","try_100_bill","chf_1_coin","chf_100_bill","brl_1_coin","brl_100_bill"]
+          description: >
+            Type Of Money is the money to be stacked (the crux of this expression):
+            * `usd_1_coin` - Dollar Coins (USD; 2 mm per coin);
+            * `usd_100_bill` - Hundred-Dollar Bills (USD; 0.11 mm per bill);
+            * `cad_1_coin` - Loonies (CAD; 1.95 mm per coin);
+            * `cad_100_bill` - Hundred-Dollar Bills (CAD; 0.0875 mm per bill);
+            * `eur_1_coin` - Euro Coins (EUR; 2.33 mm per coin);
+            * `eur_100_bill` - Hundred-Euro Bills (EUR; 0.12 mm per bill);
+            * `gbp_1_coin` - Pound Coins (GBP; 2.8 mm per coin);
+            * `gbp_100_bill` - Hundred-Pound Bills (GBP; 0.0825 mm per bill);
+            * `cny_1_coin` - Yuan Coins (CNY; 1.85 mm per coin);
+            * `cny_100_bill` - Hundred-Yuan Bills (CNY; 0.1 mm per bill);
+            * `inr_1_coin` - Rupee Coins (INR; 1.45 mm per coin);
+            * `inr_100_bill` - Hundred-Rupee Bills (INR; 0.11 mm per bill);
+            * `krw_1_coin` - Won Coins (KRW; 1.45 mm per coin);
+            * `krw_1000_bill` - Thousand-Won Bills (KRW; 0.1 mm per bill);
+            * `rub_1_coin` - Ruble Coins (RUB; 1.5 mm per coin);
+            * `rub_100_bill` - Hundred-Ruble Bills (RUB; 0.1 mm per bill);
+            * `try_1_coin` - Lira Coins (TRY; 2 mm per coin);
+            * `try_100_bill` - Hundred-Lira Bills (TRY; 0.105 mm per bill);
+            * `chf_1_coin` - Franc Coins (CHF; 1.55 mm per coin);
+            * `chf_100_bill` - Hundred-Franc Bills (CHF; 0.11 mm per bill);
+            * `brl_1_coin` - Real Coins (BRL; 1.95 mm per coin); or
+            * `brl_100_bill` - Hundred-Real Bills (BRL; 0.105 mm per bill).
+      responses:
+        '200':
+          description: a JSON object with response data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+                  data:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                        example: 2000000
+                        description: The value for height.
+                      unit:
+                        type: string
+                        example: "meters"
+                        description: The unit for height.
+                      type:
+                        type: string
+                        example: "dollar coins"
+                        description: The kind of stacked money (coins or bills) customized for inputted currency type.
+                      phrase:
+                        type: string
+                        example: "1,243 Miles (2,000 km)"
+                        description: A phrase of the height (title-cased for use as a standalone label).
+                      sentence:
+                        type: string
+                        example: "A person with a wealth of $1,000,000,000 would have a stack of dollar coins 1,243 miles (2,000 km) high!"
+                        description: A complete sentence summarizing the expression and its height result (sentence-cased for use as inline prose).
+                      scale:
+                        type: string
+                        nullable: true
+                        example: "That's about 10 times the distance of a roundtrip to the edge of space (Kármán Line)."
+                        description: A complete sentence providing context for the expression and its height result (sentence-cased for use as inline prose).
+                    required:
+                      - value
+                      - unit
+                      - type
+                      - phrase
+                      - sentence
+                      - scale
+                required:
+                  - "status"
+                  - "data"
+        '400':
+          description: a JSON object with error data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      message:
+                        type: string
+                        example: "Wealth Missing"
+                        description: A human-readable error message like 'Wealth Missing', 'Wealth Malformed', 'Wealth Zero', etc.
+                    required:
+                      - "code"
+                      - "message"
+                required:
+                  - "status"
+                  - "error"
+        '429':
+          description: rate limit exceeded
+          headers:
+            Retry-After:
+              description: The number of seconds remaining until the rate-limit window resets.
+              schema:
+                type: integer
+                example: 60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 429
+                      message:
+                        type: string
+                        example: "Too Many Requests"
+                      details:
+                        type: string
+                        example: "Rate limit exceeded. Try again in 60 seconds."
+                      retryAfter:
+                        type: integer
+                        example: 60
+                        description: The number of seconds remaining until the rate-limit window resets.
+                    required:
+                      - "code"
+                      - "message"
+                      - "details"
+                      - "retryAfter"
+                required:
+                  - "status"
+                  - "error"
+      x-ratelimit:
+        limit: 100
+        period: 1 minute
+        unit: requests
+        scope: ip
+        shared: true
+        description: Rate limited to 100 requests per minute per IP, shared across all /v1 endpoints.
+
+  /numberOfItems:
+    get:
+      operationId: numberOfItems
+      summary: Number Of Items Paid For
+      description: Given a wealth and type of item, returns the number of specified-items the specified-wealth could buy or pay for/off.
+      tags:
+        - Wealth Expression
+      parameters:
+        - in: query
+          name: wealth
+          required: true
+          schema:
+            oneOf:
+              - type: number
+                description: a numeric amount with or without decimal places
+                minimum: 1
+                maximum: 1000000000000000000000000
+                example: 1000000000
+              - type: string
+                description: a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol
+          description: Wealth is the amount of money to be described via this expression.
+        - in: query
+          name: typeOfItem
+          required: true
+          schema:
+            type: string
+            enum: ["fancy_coffee", "quick_meal", "dinner_with_drinks", "iphone", "month_of_childcare", "rent_or_mortgage_payment", "year_of_low_minimum_wage_salary", "year_of_high_minimum_wage_salary", "student_loan_debt", "car", "year_of_salary_65k", "year_of_salary_100k", "luxury_car", "house", "yacht", "supercar", "island", "mansion", "estate_with_a_mega_mansion", "luxury_island", "superyacht"]
+          description: >
+            Type Of Item is the item to be bought or paid for/off (the crux of this expression):
+            * `fancy_coffee` - $10 Fancy Coffee
+            * `quick_meal` - $15 Quick Meal
+            * `dinner_with_drinks` - $175 Dinner With Drinks
+            * `iphone` - $1,400 iPhone
+            * `month_of_childcare` - $1,750 Month Of Childcare
+            * `rent_or_mortgage_payment` - $3,000 Rent Or Mortgage Payment
+            * `year_of_low_minimum_wage_salary` - Year Of Low Minimum Wage Salary ($15,080)
+            * `year_of_high_minimum_wage_salary` - Year Of High Minimum Wage Salary ($32,240)
+            * `student_loan_debt` - $40K Student Loan Debt
+            * `car` - $50K Car
+            * `year_of_salary_65k` - Year Of $65,000 Salary
+            * `year_of_salary_100k` - Year Of $100,000 Salary
+            * `luxury_car` - $275K Luxury Car
+            * `house` - $500K House
+            * `yacht` - $800K Yacht
+            * `supercar` - $4M Supercar
+            * `island` - $30M Island
+            * `mansion` - $75M Mansion
+            * `estate_with_a_mega_mansion` - $200M Estate With A Mega-Mansion
+            * `luxury_island` - $300M Luxury Island
+            * `superyacht` - $600M Superyacht
+      responses:
+        '200':
+          description: a JSON object with response data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+                  data:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                        example: 2000
+                        description: The number of items bought or paid for/off.
+                      unit:
+                        type: string
+                        nullable: true
+                        example: null
+                        description: This expression doesn't have any units.
+                      type:
+                        type: string
+                        example: "houses"
+                        description: The kind of item bought or paid for/off.
+                      phrase:
+                        type: string
+                        example: "2,000 Houses"
+                        description: A phrase of the number of items bought or paid for/off (title-cased for use as a standalone label).
+                      sentence:
+                        type: string
+                        example: "A person with a wealth of $1,000,000,000 could buy 2,000 houses all at once!"
+                        description: A complete sentence summarizing the expression and its number of items bought or paid for/off result (sentence-cased for use as inline prose).
+                      scale:
+                        type: string
+                        nullable: true
+                        example: "That's approximately 1.3 times enough for every person in a village (typically between 1K–10K population)."
+                        description: A complete sentence providing context for the expression and its number of items bought or paid for/off result (sentence-cased for use as inline prose).
+                    required:
+                      - value
+                      - unit
+                      - type
+                      - phrase
+                      - sentence
+                      - scale
+                required:
+                  - "status"
+                  - "data"
+        '400':
+          description: a JSON object with error data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      message:
+                        type: string
+                        example: "Wealth Missing"
+                        description: A human-readable error message like 'Wealth Missing', 'Wealth Malformed', 'Wealth Zero', etc.
+                    required:
+                      - "code"
+                      - "message"
+                required:
+                  - "status"
+                  - "error"
+        '429':
+          description: rate limit exceeded
+          headers:
+            Retry-After:
+              description: The number of seconds remaining until the rate-limit window resets.
+              schema:
+                type: integer
+                example: 60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 429
+                      message:
+                        type: string
+                        example: "Too Many Requests"
+                      details:
+                        type: string
+                        example: "Rate limit exceeded. Try again in 60 seconds."
+                      retryAfter:
+                        type: integer
+                        example: 60
+                        description: The number of seconds remaining until the rate-limit window resets.
+                    required:
+                      - "code"
+                      - "message"
+                      - "details"
+                      - "retryAfter"
+                required:
+                  - "status"
+                  - "error"
+      x-ratelimit:
+        limit: 100
+        period: 1 minute
+        unit: requests
+        scope: ip
+        shared: true
+        description: Rate limited to 100 requests per minute per IP, shared across all /v1 endpoints.
+
+  /growthOfCompoundInterest:
+    get:
+      operationId: growthOfCompoundInterest
+      summary: Growth Of Compound Interest
+      description: Given a wealth and a rate, frequency, and period, returns the growth of a specified-wealth's compound interest at a specified-rate and specified-frequency for a specified-period.
+      tags:
+        - Wealth Expression
+      parameters:
+        - in: query
+          name: wealth
+          required: true
+          schema:
+            oneOf:
+              - type: number
+                description: a numeric amount with or without decimal places
+                minimum: 1
+                maximum: 1000000000000000000000000
+                example: 1000000000
+              - type: string
+                description: a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol
+          description: Wealth is the amount of money to be described via this expression.
+        - in: query
+          name: rate
+          required: true
+          schema:
+            type: number
+            format: float
+            minimum: 0
+            maximum: 1
+            exclusiveMinimum: true
+            exclusiveMaximum: true
+            example: 0.01
+          description: Rate is the interest rate at which the wealth is compounded (one-third of the crux of this expression).
+        - in: query
+          name: frequency
+          required: true
+          schema:
+            type: string
+            enum: ["1", "2", "4", "12", "365"]
+          description: >
+            Frequency is how often the wealth is compounded (one-third of the crux of this expression):
+            * `1` - Annually
+            * `2` - Semiannually
+            * `4` - Quarterly
+            * `12` - Monthly
+            * `365` - Daily
+        - in: query
+          name: period
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            maximum: 100
+            exclusiveMinimum: true
+            exclusiveMaximum: true
+            example: 20
+          description: Period is the duration of time in years over which the wealth is compounded (one-third of the crux of this expression).
+      responses:
+        '200':
+          description: a JSON object with response data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+                  data:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                        example: 220190040
+                        description: The value for growth of compounded interest.
+                      unit:
+                        type: string
+                        example: "dollars"
+                        description: The unit for growth of compounded interest.
+                      type:
+                        type: string
+                        nullable: true
+                        example: null
+                        description: This expression doesn't have any types.
+                      phrase:
+                        type: string
+                        example: "By $220,190,040 Over 20 Years"
+                        description: A phrase of the growth of compounded interest (title-cased for use as a standalone label).
+                      sentence:
+                        type: string
+                        example: "With 1% interest compounded annually, a person with $1,000,000,000 would grow their wealth by $220,190,040 over 20 years!"
+                        description: A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose).
+                      scale:
+                        type: string
+                        nullable: true
+                        example: "This growth in their wealth — not the principal, just the interest they earned during this single period of time — is approximately 2.2 times the annual recurring revenue goal for a best-in-class startup company (≈$100M)."
+                        description: A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose).
+                    required:
+                      - value
+                      - unit
+                      - type
+                      - phrase
+                      - sentence
+                      - scale
+                required:
+                  - "status"
+                  - "data"
+        '400':
+          description: a JSON object with error data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      message:
+                        type: string
+                        example: "Wealth Missing"
+                        description: A human-readable error message like 'Wealth Missing', 'Wealth Malformed', 'Wealth Zero', etc.
+                    required:
+                      - "code"
+                      - "message"
+                required:
+                  - "status"
+                  - "error"
+        '429':
+          description: rate limit exceeded
+          headers:
+            Retry-After:
+              description: The number of seconds remaining until the rate-limit window resets.
+              schema:
+                type: integer
+                example: 60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 429
+                      message:
+                        type: string
+                        example: "Too Many Requests"
+                      details:
+                        type: string
+                        example: "Rate limit exceeded. Try again in 60 seconds."
+                      retryAfter:
+                        type: integer
+                        example: 60
+                        description: The number of seconds remaining until the rate-limit window resets.
+                    required:
+                      - "code"
+                      - "message"
+                      - "details"
+                      - "retryAfter"
+                required:
+                  - "status"
+                  - "error"
+      x-ratelimit:
+        limit: 100
+        period: 1 minute
+        unit: requests
+        scope: ip
+        shared: true
+        description: Rate limited to 100 requests per minute per IP, shared across all /v1 endpoints.
+  /comparison:
+    get:
+      operationId: comparison
+      summary: Full Comparison Of Two Wealths
+      description: Given an expression, two wealths (yours and theirs), and that expression's own parameters, returns the expression's result for both wealths plus the ratio between them — a complete "them vs. you" comparison in a single call.
+      tags:
+        - Comparison
+      parameters:
+        - in: query
+          name: expression
+          required: true
+          schema:
+            type: string
+            enum: ["durationOfDailySpend", "heightOfMoneyStack", "numberOfItems", "growthOfCompoundInterest"]
+          description: >
+            Expression is the wealth expression to compute for both wealths (the crux of this comparison):
+            * `durationOfDailySpend` - also requires `spend`
+            * `heightOfMoneyStack` - also requires `typeOfMoney`
+            * `numberOfItems` - also requires `typeOfItem`
+            * `growthOfCompoundInterest` - also requires `rate`, `frequency`, and `period`
+        - in: query
+          name: wealthYours
+          required: true
+          schema:
+            oneOf:
+              - type: number
+                description: a numeric amount with or without decimal places
+                minimum: 1
+                maximum: 1000000000000000000000000
+                example: 1000000000
+              - type: string
+                description: a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol
+          description: Wealth Yours is the amount of money of the user ("your" wealth) to be compared via the specified expression.
+        - in: query
+          name: wealthTheirs
+          required: true
+          schema:
+            oneOf:
+              - type: number
+                description: a numeric amount with or without decimal places
+                minimum: 1
+                maximum: 1000000000000000000000000
+                example: 1000000000
+              - type: string
+                description: a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol
+          description: Wealth Theirs is the amount of money of the ultrarich ("their" wealth) to be compared via the specified expression.
+        - in: query
+          name: spend
+          required: false
+          schema:
+            oneOf:
+              - type: number
+                description: a numeric amount with or without decimal places
+                minimum: 1
+                maximum: 1000000000000000000000000
+                example: 1000
+              - type: string
+                description: a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol
+          description: Spend is the amount of money to be spent daily. Required when expression is durationOfDailySpend; ignored otherwise.
+        - in: query
+          name: typeOfMoney
+          required: false
+          schema:
+            type: string
+            enum: ["usd_1_coin","usd_100_bill","cad_1_coin","cad_100_bill","eur_1_coin","eur_100_bill","gbp_1_coin","gbp_100_bill","cny_1_coin","cny_100_bill","inr_1_coin","inr_100_bill","krw_1_coin","krw_1000_bill","rub_1_coin","rub_100_bill","try_1_coin","try_100_bill","chf_1_coin","chf_100_bill","brl_1_coin","brl_100_bill"]
+          description: >
+            Type Of Money is the money to be stacked. Required when expression is heightOfMoneyStack; ignored otherwise.
+            * `usd_1_coin` - Dollar Coins (USD; 2 mm per coin);
+            * `usd_100_bill` - Hundred-Dollar Bills (USD; 0.11 mm per bill);
+            * `cad_1_coin` - Loonies (CAD; 1.95 mm per coin);
+            * `cad_100_bill` - Hundred-Dollar Bills (CAD; 0.0875 mm per bill);
+            * `eur_1_coin` - Euro Coins (EUR; 2.33 mm per coin);
+            * `eur_100_bill` - Hundred-Euro Bills (EUR; 0.12 mm per bill);
+            * `gbp_1_coin` - Pound Coins (GBP; 2.8 mm per coin);
+            * `gbp_100_bill` - Hundred-Pound Bills (GBP; 0.0825 mm per bill);
+            * `cny_1_coin` - Yuan Coins (CNY; 1.85 mm per coin);
+            * `cny_100_bill` - Hundred-Yuan Bills (CNY; 0.1 mm per bill);
+            * `inr_1_coin` - Rupee Coins (INR; 1.45 mm per coin);
+            * `inr_100_bill` - Hundred-Rupee Bills (INR; 0.11 mm per bill);
+            * `krw_1_coin` - Won Coins (KRW; 1.45 mm per coin);
+            * `krw_1000_bill` - Thousand-Won Bills (KRW; 0.1 mm per bill);
+            * `rub_1_coin` - Ruble Coins (RUB; 1.5 mm per coin);
+            * `rub_100_bill` - Hundred-Ruble Bills (RUB; 0.1 mm per bill);
+            * `try_1_coin` - Lira Coins (TRY; 2 mm per coin);
+            * `try_100_bill` - Hundred-Lira Bills (TRY; 0.105 mm per bill);
+            * `chf_1_coin` - Franc Coins (CHF; 1.55 mm per coin);
+            * `chf_100_bill` - Hundred-Franc Bills (CHF; 0.11 mm per bill);
+            * `brl_1_coin` - Real Coins (BRL; 1.95 mm per coin); or
+            * `brl_100_bill` - Hundred-Real Bills (BRL; 0.105 mm per bill).
+        - in: query
+          name: typeOfItem
+          required: false
+          schema:
+            type: string
+            enum: ["fancy_coffee", "quick_meal", "dinner_with_drinks", "iphone", "month_of_childcare", "rent_or_mortgage_payment", "year_of_low_minimum_wage_salary", "year_of_high_minimum_wage_salary", "student_loan_debt", "car", "year_of_salary_65k", "year_of_salary_100k", "luxury_car", "house", "yacht", "supercar", "island", "mansion", "estate_with_a_mega_mansion", "luxury_island", "superyacht"]
+          description: >
+            Type Of Item is the item to be bought or paid for/off. Required when expression is numberOfItems; ignored otherwise.
+            * `fancy_coffee` - $10 Fancy Coffee
+            * `quick_meal` - $15 Quick Meal
+            * `dinner_with_drinks` - $175 Dinner With Drinks
+            * `iphone` - $1,400 iPhone
+            * `month_of_childcare` - $1,750 Month Of Childcare
+            * `rent_or_mortgage_payment` - $3,000 Rent Or Mortgage Payment
+            * `year_of_low_minimum_wage_salary` - Year Of Low Minimum Wage Salary ($15,080)
+            * `year_of_high_minimum_wage_salary` - Year Of High Minimum Wage Salary ($32,240)
+            * `student_loan_debt` - $40K Student Loan Debt
+            * `car` - $50K Car
+            * `year_of_salary_65k` - Year Of $65,000 Salary
+            * `year_of_salary_100k` - Year Of $100,000 Salary
+            * `luxury_car` - $275K Luxury Car
+            * `house` - $500K House
+            * `yacht` - $800K Yacht
+            * `supercar` - $4M Supercar
+            * `island` - $30M Island
+            * `mansion` - $75M Mansion
+            * `estate_with_a_mega_mansion` - $200M Estate With A Mega-Mansion
+            * `luxury_island` - $300M Luxury Island
+            * `superyacht` - $600M Superyacht
+        - in: query
+          name: rate
+          required: false
+          schema:
+            type: number
+            format: float
+            minimum: 0
+            maximum: 1
+            exclusiveMinimum: true
+            exclusiveMaximum: true
+            example: 0.01
+          description: Rate is the interest rate at which the wealths are compounded. Required when expression is growthOfCompoundInterest; ignored otherwise.
+        - in: query
+          name: frequency
+          required: false
+          schema:
+            type: string
+            enum: ["1", "2", "4", "12", "365"]
+          description: Frequency is how often the wealths are compounded (1 Annually; 2 Semiannually; 4 Quarterly; 12 Monthly; 365 Daily). Required when expression is growthOfCompoundInterest; ignored otherwise.
+        - in: query
+          name: period
+          required: false
+          schema:
+            type: number
+            minimum: 0
+            maximum: 100
+            exclusiveMinimum: true
+            exclusiveMaximum: true
+            example: 20
+          description: Period is the duration of time in years over which the wealths are compounded. Required when expression is growthOfCompoundInterest; ignored otherwise.
+      responses:
+        '200':
+          description: a JSON object with response data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+                  data:
+                    type: object
+                    properties:
+                      expression:
+                        type: string
+                        example: "durationOfDailySpend"
+                        description: The expression that was computed for both wealths (echoed so the payload is self-describing).
+                      resultTheirs:
+                        type: object
+                        description: The expression's result for wealthTheirs. Same shape as the expression's own endpoint response data.
+                        properties:
+                          value:
+                            type: number
+                            example: 273972.602739726
+                            description: The raw numeric result for their wealth.
+                          unit:
+                            type: string
+                            nullable: true
+                            example: "years"
+                            description: The unit of the value (where applicable).
+                          type:
+                            type: string
+                            nullable: true
+                            example: null
+                            description: The type of result (kind of stacked money, kind of item, or null).
+                          phrase:
+                            type: string
+                            example: "274 Millennia (273,973 Years)"
+                            description: A phrase of the result (title-cased for use as a standalone label).
+                          sentence:
+                            type: string
+                            example: "A person with a wealth of $100,000,000,000 could spend $1,000 every day for 274 millennia (273,973 years)!"
+                            description: A complete sentence summarizing the expression and its result (sentence-cased for use as inline prose).
+                          scale:
+                            type: string
+                            nullable: true
+                            example: "That's approximately 1.6 times as long ago as when Homo Sapiens began wearing primitive clothing (≈170K BCE)."
+                            description: A complete sentence providing context for the result (sentence-cased for use as inline prose).
+                        required:
+                          - value
+                          - unit
+                          - type
+                          - phrase
+                          - sentence
+                          - scale
+                      resultYours:
+                        type: object
+                        description: The expression's result for wealthYours. Same shape as the expression's own endpoint response data.
+                        properties:
+                          value:
+                            type: number
+                            example: 0.273972602739726
+                            description: The raw numeric result for your wealth.
+                          unit:
+                            type: string
+                            nullable: true
+                            example: "years"
+                            description: The unit of the value (where applicable).
+                          type:
+                            type: string
+                            nullable: true
+                            example: null
+                            description: The type of result (kind of stacked money, kind of item, or null).
+                          phrase:
+                            type: string
+                            example: "100 Days"
+                            description: A phrase of the result (title-cased for use as a standalone label).
+                          sentence:
+                            type: string
+                            example: "A person with a wealth of $100,000 could spend $1,000 every day for 100 days!"
+                            description: A complete sentence summarizing the expression and its result (sentence-cased for use as inline prose).
+                          scale:
+                            type: string
+                            nullable: true
+                            example: null
+                            description: A complete sentence providing context for the result (sentence-cased for use as inline prose).
+                        required:
+                          - value
+                          - unit
+                          - type
+                          - phrase
+                          - sentence
+                          - scale
+                      ratio:
+                        type: object
+                        description: The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger).
+                        properties:
+                          value:
+                            type: number
+                            example: 1000000
+                            description: The raw numeric ratio of wealthTheirs to wealthYours.
+                          phrase:
+                            type: string
+                            example: "1,000,000 : 1"
+                            description: A phrase of the ratio with the 1 on the smaller side (title-cased for use as a standalone label).
+                          sentence:
+                            type: string
+                            example: "Their wealth is 1,000,000 times yours."
+                            description: A complete direction-aware sentence summarizing the ratio (sentence-cased for use as inline prose).
+                          scale:
+                            type: string
+                            nullable: true
+                            example: "That's extreme wealth inequality."
+                            description: A complete sentence assessing the ratio, tiered by magnitude (ratios of 200-to-1 or more are described as extreme wealth inequality, per IMF context).
+                        required:
+                          - value
+                          - phrase
+                          - sentence
+                          - scale
+                    required:
+                      - "expression"
+                      - "resultTheirs"
+                      - "resultYours"
+                      - "ratio"
+                required:
+                  - "status"
+                  - "data"
+        '400':
+          description: a JSON object with error data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      message:
+                        type: string
+                        example: "Their Wealth Missing"
+                        description: A human-readable error message like 'Expression Invalid', 'Your Wealth Zero', 'Their Wealth Missing', etc.
+                    required:
+                      - "code"
+                      - "message"
+                required:
+                  - "status"
+                  - "error"
+        '429':
+          description: rate limit exceeded
+          headers:
+            Retry-After:
+              description: The number of seconds remaining until the rate-limit window resets.
+              schema:
+                type: integer
+                example: 60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 429
+                      message:
+                        type: string
+                        example: "Too Many Requests"
+                      details:
+                        type: string
+                        example: "Rate limit exceeded. Try again in 60 seconds."
+                      retryAfter:
+                        type: integer
+                        example: 60
+                        description: The number of seconds remaining until the rate-limit window resets.
+                    required:
+                      - "code"
+                      - "message"
+                      - "details"
+                      - "retryAfter"
+                required:
+                  - "status"
+                  - "error"
+      x-ratelimit:
+        limit: 100
+        period: 1 minute
+        unit: requests
+        scope: ip
+        shared: true
+        description: Rate limited to 100 requests per minute per IP, shared across all /v1 endpoints.

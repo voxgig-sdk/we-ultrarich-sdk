@@ -1,0 +1,37 @@
+# Entity: discovery
+
+main: kit: entity: discovery: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "route"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "discovery"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/expressions"
+          parts: [
+            "expressions"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

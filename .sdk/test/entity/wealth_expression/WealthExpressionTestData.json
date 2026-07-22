@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "wealth_expression": {
+      "WEALTH_EXPRESSION00": {
+        "data": {},
+        "status": "s15",
+        "id": "WEALTH_EXPRESSION00"
+      },
+      "WEALTH_EXPRESSION01": {
+        "data": {},
+        "status": "s29",
+        "id": "WEALTH_EXPRESSION01"
+      },
+      "WEALTH_EXPRESSION02": {
+        "data": {},
+        "status": "s3d",
+        "id": "WEALTH_EXPRESSION02"
+      }
+    }
+  },
+  "new": {
+    "wealth_expression": {
+      "wealth_expression_ref01": {
+        "data": {},
+        "status": "s51"
+      }
+    }
+  }
+}

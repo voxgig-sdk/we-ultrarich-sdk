@@ -1,0 +1,22 @@
+# BasicDiscoveryFlow
+
+main: kit: flow: BasicDiscoveryFlow:
+{
+  entity: "discovery",
+  kind: "basic",
+  name: "BasicDiscoveryFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "discovery_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDiscoveryFlow"
+}

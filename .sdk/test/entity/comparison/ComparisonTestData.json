@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "comparison": {
+      "COMPARISON00": {
+        "data": {},
+        "status": "s15",
+        "id": "COMPARISON00"
+      },
+      "COMPARISON01": {
+        "data": {},
+        "status": "s29",
+        "id": "COMPARISON01"
+      },
+      "COMPARISON02": {
+        "data": {},
+        "status": "s3d",
+        "id": "COMPARISON02"
+      }
+    }
+  },
+  "new": {
+    "comparison": {
+      "comparison_ref01": {
+        "data": {},
+        "status": "s51"
+      }
+    }
+  }
+}

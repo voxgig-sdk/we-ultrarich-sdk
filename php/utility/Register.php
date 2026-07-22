@@ -1,0 +1,67 @@
+<?php
+declare(strict_types=1);
+
+// WeUltrarich SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+WeUltrarichUtility::setRegistrar(function (WeUltrarichUtility $u): void {
+    $u->clean = [WeUltrarichClean::class, 'call'];
+    $u->done = [WeUltrarichDone::class, 'call'];
+    $u->make_error = [WeUltrarichMakeError::class, 'call'];
+    $u->feature_add = [WeUltrarichFeatureAdd::class, 'call'];
+    $u->feature_hook = [WeUltrarichFeatureHook::class, 'call'];
+    $u->feature_init = [WeUltrarichFeatureInit::class, 'call'];
+    $u->fetcher = [WeUltrarichFetcher::class, 'call'];
+    $u->make_fetch_def = [WeUltrarichMakeFetchDef::class, 'call'];
+    $u->make_context = [WeUltrarichMakeContext::class, 'call'];
+    $u->make_options = [WeUltrarichMakeOptions::class, 'call'];
+    $u->make_request = [WeUltrarichMakeRequest::class, 'call'];
+    $u->make_response = [WeUltrarichMakeResponse::class, 'call'];
+    $u->make_result = [WeUltrarichMakeResult::class, 'call'];
+    $u->make_point = [WeUltrarichMakePoint::class, 'call'];
+    $u->make_spec = [WeUltrarichMakeSpec::class, 'call'];
+    $u->make_url = [WeUltrarichMakeUrl::class, 'call'];
+    $u->param = [WeUltrarichParam::class, 'call'];
+    $u->prepare_auth = [WeUltrarichPrepareAuth::class, 'call'];
+    $u->prepare_body = [WeUltrarichPrepareBody::class, 'call'];
+    $u->prepare_headers = [WeUltrarichPrepareHeaders::class, 'call'];
+    $u->prepare_method = [WeUltrarichPrepareMethod::class, 'call'];
+    $u->prepare_params = [WeUltrarichPrepareParams::class, 'call'];
+    $u->prepare_path = [WeUltrarichPreparePath::class, 'call'];
+    $u->prepare_query = [WeUltrarichPrepareQuery::class, 'call'];
+    $u->result_basic = [WeUltrarichResultBasic::class, 'call'];
+    $u->result_body = [WeUltrarichResultBody::class, 'call'];
+    $u->result_headers = [WeUltrarichResultHeaders::class, 'call'];
+    $u->transform_request = [WeUltrarichTransformRequest::class, 'call'];
+    $u->transform_response = [WeUltrarichTransformResponse::class, 'call'];
+});

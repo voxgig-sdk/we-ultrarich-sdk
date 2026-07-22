@@ -1,0 +1,37 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        email: "info@wegtultrarich.org"
+        name: "Support"
+        url: "https://wegtultrarich.org/faq.html"
+      }
+      description: `How much is billions or trillions of dollars? Understand the scale of extreme wealth inequality by viewing Duration Of Daily Spend (Daily Spending), Height Of Stacked Money (Physical Size), Number Of Items Paid For (Purchasing Power), or Growth Of Compound Interest (Compound Interest).
+
+An MCP (Model Context Protocol) server exposing these operations as agent tools is available at https://api.wegtultrarich.org/mcp.
+
+Free for any use, including commercial. Results are licensed CC BY 4.0 — please use the attribution "Source: We > Ultrarich (wegtultrarich.org)." The API's source code is not open source; view [LICENSE.md](https://wegtultrarich.org/LICENSE.md).
+`
+      license: {
+        name: "CC BY 4.0"
+        url: "https://creativecommons.org/licenses/by/4.0/"
+      }
+      servers: [
+        {
+          description: "Main (Production) Server"
+          url: "https://api.wegtultrarich.org/v1"
+        }
+      ]
+      summary: "How much is billions or trillions of dollars?"
+      title: "We > Ultrarich API"
+      version: "1.2.0"
+      website: "https://api.wegtultrarich.org/README.md"
+      "x-privacy-policy-url": "https://wegtultrarich.org/privacy-policy.html"
+    }
+  }
+}
+

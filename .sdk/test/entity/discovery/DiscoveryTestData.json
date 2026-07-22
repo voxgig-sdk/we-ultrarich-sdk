@@ -1,0 +1,22 @@
+{
+  "existing": {
+    "discovery": {
+      "DISCOVERY00": {
+        "route": "sa"
+      },
+      "DISCOVERY01": {
+        "route": "s14"
+      },
+      "DISCOVERY02": {
+        "route": "s1e"
+      }
+    }
+  },
+  "new": {
+    "discovery": {
+      "discovery_ref01": {
+        "route": "s28"
+      }
+    }
+  }
+}

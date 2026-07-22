@@ -1,0 +1,35 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 6
+  metrics: count: method: 6
+
+  entity: comparison: {
+    path: "/comparison": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: discovery: {
+    path: "/expressions": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: wealth_expression: {
+    path: "/durationOfDailySpend": {
+      op: load: method: *GET
+    }
+    path: "/growthOfCompoundInterest": {
+      op: load: method: *GET
+    }
+    path: "/heightOfMoneyStack": {
+      op: load: method: *GET
+    }
+    path: "/numberOfItems": {
+      op: load: method: *GET
+    }
+  }
+
+}
