@@ -121,7 +121,8 @@ Create a mock client for unit testing — no server required:
 const client = WeUltrarichSDK.test()
 
 const comparison = await client.Comparison().load()
-// comparison is a bare entity populated with mock response data
+// comparison is the entity, populated with mock response data
+// — call comparison.data() for the record itself
 console.log(comparison)
 ```
 
@@ -289,8 +290,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `expression` |  |
+| `ratio` |  |
+| `resultTheirs` |  |
+| `resultYours` |  |
 
 Operations: load.
 
@@ -310,8 +313,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `phrase` |  |
+| `scale` |  |
+| `sentence` |  |
+| `type` |  |
+| `unit` |  |
+| `value` |  |
 
 Operations: load.
 
@@ -336,8 +343,10 @@ Create an instance: `const comparison = client.Comparison()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `status` | `string` |  |
+| `expression` | `string` |  |
+| `ratio` | `Record<string, any>` |  |
+| `resultTheirs` | `Record<string, any>` |  |
+| `resultYours` | `Record<string, any>` |  |
 
 #### Example: Load
 
@@ -383,8 +392,12 @@ Create an instance: `const wealth_expression = client.WealthExpression()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `status` | `string` |  |
+| `phrase` | `string` |  |
+| `scale` | `string` |  |
+| `sentence` | `string` |  |
+| `type` | `string` |  |
+| `unit` | `string` |  |
+| `value` | `number` |  |
 
 #### Example: Load
 

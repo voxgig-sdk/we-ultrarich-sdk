@@ -2,18 +2,30 @@
   "existing": {
     "wealth_expression": {
       "WEALTH_EXPRESSION00": {
-        "data": {},
-        "status": "s15",
+        "phrase": "s3c",
+        "scale": "s3d",
+        "sentence": "s3e",
+        "type": "s3f",
+        "unit": "s40",
+        "value": 65,
         "id": "WEALTH_EXPRESSION00"
       },
       "WEALTH_EXPRESSION01": {
-        "data": {},
-        "status": "s29",
+        "phrase": "s78",
+        "scale": "s79",
+        "sentence": "s7a",
+        "type": "s7b",
+        "unit": "s7c",
+        "value": 125,
         "id": "WEALTH_EXPRESSION01"
       },
       "WEALTH_EXPRESSION02": {
-        "data": {},
-        "status": "s3d",
+        "phrase": "sb4",
+        "scale": "sb5",
+        "sentence": "sb6",
+        "type": "sb7",
+        "unit": "sb8",
+        "value": 185,
         "id": "WEALTH_EXPRESSION02"
       }
     }
@@ -21,8 +33,12 @@
   "new": {
     "wealth_expression": {
       "wealth_expression_ref01": {
-        "data": {},
-        "status": "s51"
+        "phrase": "sf0",
+        "scale": "sf1",
+        "sentence": "sf2",
+        "type": "sf3",
+        "unit": "sf4",
+        "value": 245
       }
     }
   }

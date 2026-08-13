@@ -8,27 +8,33 @@ guide: {
   entity: comparison: {
     path: "/comparison": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: discovery: {
     path: "/expressions": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: wealth_expression: {
     path: "/durationOfDailySpend": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/growthOfCompoundInterest": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/heightOfMoneyStack": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/numberOfItems": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 

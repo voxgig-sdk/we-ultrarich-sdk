@@ -19,11 +19,15 @@ import {
 describe('DiscoveryDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when WEULTRARICH_TEST_LIVE=TRUE.
-  afterEach(liveDelay('WEULTRARICH_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when WE_ULTRARICH_TEST_LIVE=TRUE.
+  afterEach(liveDelay('WE_ULTRARICH_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new WeUltrarichSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,17 +81,17 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'WEULTRARICH_TEST_DISCOVERY_ENTID': {},
-    'WEULTRARICH_TEST_LIVE': 'FALSE',
+    'WE_ULTRARICH_TEST_DISCOVERY_ENTID': {},
+    'WE_ULTRARICH_TEST_LIVE': 'FALSE',
   })
 
-  const live = 'TRUE' === env.WEULTRARICH_TEST_LIVE
+  const live = 'TRUE' === env.WE_ULTRARICH_TEST_LIVE
 
   if (live) {
     const client = new WeUltrarichSDK({
     })
 
-    let idmap: any = env['WEULTRARICH_TEST_DISCOVERY_ENTID']
+    let idmap: any = env['WE_ULTRARICH_TEST_DISCOVERY_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

@@ -26,8 +26,8 @@ import {
 describe('DiscoveryEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when WEULTRARICH_TEST_LIVE=TRUE.
-  afterEach(liveDelay('WEULTRARICH_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when WE_ULTRARICH_TEST_LIVE=TRUE.
+  afterEach(liveDelay('WE_ULTRARICH_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = WeUltrarichSDK.test()
@@ -63,7 +63,7 @@ describe('DiscoveryEntity', async () => {
     const discovery_ref01_ent = client.Discovery()
     const discovery_ref01_match: any = {}
 
-    const discovery_ref01_list = await discovery_ref01_ent.list(discovery_ref01_match)
+    const discovery_ref01_list = (await discovery_ref01_ent.list(discovery_ref01_match)).map((e: any) => e.data())
 
 
   })

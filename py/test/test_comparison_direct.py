@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from weultrarich_sdk.utility.voxgig_struct import voxgig_struct as vs
 from weultrarich_sdk import WeUltrarichSDK
-from core import helpers
+from weultrarich_sdk.core import helpers
 from test import runner
 
 
@@ -56,11 +56,11 @@ def _comparison_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "WEULTRARICH_TEST_COMPARISON_ENTID": {},
-        "WEULTRARICH_TEST_LIVE": "FALSE",
+        "WE_ULTRARICH_TEST_COMPARISON_ENTID": {},
+        "WE_ULTRARICH_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("WEULTRARICH_TEST_LIVE") == "TRUE"
+    live = env.get("WE_ULTRARICH_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

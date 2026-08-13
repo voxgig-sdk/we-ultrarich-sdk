@@ -95,8 +95,10 @@ comparison = client.Comparison()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | Yes |  |
-| `status` | `str` | Yes |  |
+| `expression` | `str` | Yes |  |
+| `ratio` | `dict` | Yes |  |
+| `resultTheirs` | `dict` | Yes |  |
+| `resultYours` | `dict` | Yes |  |
 
 ### Operations
 
@@ -200,8 +202,12 @@ wealth_expression = client.WealthExpression()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | Yes |  |
-| `status` | `str` | Yes |  |
+| `phrase` | `str` | Yes |  |
+| `scale` | `str` | Yes |  |
+| `sentence` | `str` | Yes |  |
+| `type` | `str` | Yes |  |
+| `unit` | `str` | Yes |  |
+| `value` | `float` | Yes |  |
 
 ### Operations
 

@@ -16,11 +16,11 @@
 import pytest
 
 from weultrarich_sdk import WeUltrarichSDK
-from core.error import WeUltrarichError
-from core.result import WeUltrarichResult
-from core.response import WeUltrarichResponse
-from core.spec import WeUltrarichSpec
-from feature.base_feature import WeUltrarichBaseFeature
+from weultrarich_sdk.core.error import WeUltrarichError
+from weultrarich_sdk.core.result import WeUltrarichResult
+from weultrarich_sdk.core.response import WeUltrarichResponse
+from weultrarich_sdk.core.spec import WeUltrarichSpec
+from weultrarich_sdk.feature.base_feature import WeUltrarichBaseFeature
 
 
 def _client():

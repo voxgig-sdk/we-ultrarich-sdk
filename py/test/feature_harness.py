@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import WeUltrarichControl
-from core.error import WeUltrarichError
-from core.result import WeUltrarichResult
-from core.spec import WeUltrarichSpec
+from weultrarich_sdk.config import make_config
+from weultrarich_sdk.features import _make_feature
+from weultrarich_sdk.core.control import WeUltrarichControl
+from weultrarich_sdk.core.error import WeUltrarichError
+from weultrarich_sdk.core.result import WeUltrarichResult
+from weultrarich_sdk.core.spec import WeUltrarichSpec
 
 
 # True when this SDK was generated with the named feature.

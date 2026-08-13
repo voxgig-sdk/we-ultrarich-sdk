@@ -10,27 +10,43 @@
 
 # Comparison entity data model.
 #
-# @!attribute [rw] data
+# @!attribute [rw] expression
+#   @return [String]
+#
+# @!attribute [rw] ratio
 #   @return [Hash]
 #
-# @!attribute [rw] status
-#   @return [String]
+# @!attribute [rw] resultTheirs
+#   @return [Hash]
+#
+# @!attribute [rw] resultYours
+#   @return [Hash]
 Comparison = Struct.new(
-  :data,
-  :status,
+  :expression,
+  :ratio,
+  :resultTheirs,
+  :resultYours,
   keyword_init: true
 )
 
 # Request payload for Comparison#load.
 #
-# @!attribute [rw] data
+# @!attribute [rw] expression
+#   @return [String, nil]
+#
+# @!attribute [rw] ratio
 #   @return [Hash, nil]
 #
-# @!attribute [rw] status
-#   @return [String, nil]
+# @!attribute [rw] resultTheirs
+#   @return [Hash, nil]
+#
+# @!attribute [rw] resultYours
+#   @return [Hash, nil]
 ComparisonLoadMatch = Struct.new(
-  :data,
-  :status,
+  :expression,
+  :ratio,
+  :resultTheirs,
+  :resultYours,
   keyword_init: true
 )
 
@@ -54,27 +70,59 @@ DiscoveryListMatch = Struct.new(
 
 # WealthExpression entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash]
-#
-# @!attribute [rw] status
+# @!attribute [rw] phrase
 #   @return [String]
+#
+# @!attribute [rw] scale
+#   @return [String]
+#
+# @!attribute [rw] sentence
+#   @return [String]
+#
+# @!attribute [rw] type
+#   @return [String]
+#
+# @!attribute [rw] unit
+#   @return [String]
+#
+# @!attribute [rw] value
+#   @return [Float]
 WealthExpression = Struct.new(
-  :data,
-  :status,
+  :phrase,
+  :scale,
+  :sentence,
+  :type,
+  :unit,
+  :value,
   keyword_init: true
 )
 
 # Request payload for WealthExpression#load.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
-# @!attribute [rw] status
+# @!attribute [rw] phrase
 #   @return [String, nil]
+#
+# @!attribute [rw] scale
+#   @return [String, nil]
+#
+# @!attribute [rw] sentence
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
+#
+# @!attribute [rw] unit
+#   @return [String, nil]
+#
+# @!attribute [rw] value
+#   @return [Float, nil]
 WealthExpressionLoadMatch = Struct.new(
-  :data,
-  :status,
+  :phrase,
+  :scale,
+  :sentence,
+  :type,
+  :unit,
+  :value,
   keyword_init: true
 )
 

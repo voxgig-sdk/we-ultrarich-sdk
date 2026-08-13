@@ -106,8 +106,10 @@ fmt.Println(comparison.GetName()) // "comparison"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | Yes |  |
-| `status` | `string` | Yes |  |
+| `expression` | `string` | Yes |  |
+| `ratio` | `map[string]any` | Yes |  |
+| `resultTheirs` | `map[string]any` | Yes |  |
+| `resultYours` | `map[string]any` | Yes |  |
 
 ### Operations
 
@@ -209,8 +211,12 @@ fmt.Println(wealthExpression.GetName()) // "wealth_expression"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | Yes |  |
-| `status` | `string` | Yes |  |
+| `phrase` | `string` | Yes |  |
+| `scale` | `string` | Yes |  |
+| `sentence` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
+| `unit` | `string` | Yes |  |
+| `value` | `float64` | Yes |  |
 
 ### Operations
 

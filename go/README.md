@@ -262,8 +262,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"status"` |  |
+| `"expression"` |  |
+| `"ratio"` |  |
+| `"resultTheirs"` |  |
+| `"resultYours"` |  |
 
 Operations: Load.
 
@@ -283,8 +285,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"status"` |  |
+| `"phrase"` |  |
+| `"scale"` |  |
+| `"sentence"` |  |
+| `"type"` |  |
+| `"unit"` |  |
+| `"value"` |  |
 
 Operations: Load.
 
@@ -309,8 +315,10 @@ Create an instance: `comparison := client.Comparison(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `status` | `string` |  |
+| `expression` | `string` |  |
+| `ratio` | `map[string]any` |  |
+| `resultTheirs` | `map[string]any` |  |
+| `resultYours` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -364,8 +372,12 @@ Create an instance: `wealthExpression := client.WealthExpression(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `status` | `string` |  |
+| `phrase` | `string` |  |
+| `scale` | `string` |  |
+| `sentence` | `string` |  |
+| `type` | `string` |  |
+| `unit` | `string` |  |
+| `value` | `float64` |  |
 
 #### Example: Load
 

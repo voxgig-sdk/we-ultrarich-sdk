@@ -43,8 +43,8 @@ class WeUltrarichTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('WEULTRARICH_TEST_LIVE');
-        $override = self::getenv('WEULTRARICH_TEST_OVERRIDE');
+        $live = self::getenv('WE_ULTRARICH_TEST_LIVE');
+        $override = self::getenv('WE_ULTRARICH_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class WeUltrarichTestRunner
             }
         }
 
-        $explain = self::getenv('WEULTRARICH_TEST_EXPLAIN');
+        $explain = self::getenv('WE_ULTRARICH_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['WEULTRARICH_TEST_EXPLAIN'] = $explain;
+            $m['WE_ULTRARICH_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

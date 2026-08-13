@@ -229,8 +229,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `expression` |  |
+| `ratio` |  |
+| `resultTheirs` |  |
+| `resultYours` |  |
 
 Operations: Load.
 
@@ -250,8 +252,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `phrase` |  |
+| `scale` |  |
+| `sentence` |  |
+| `type` |  |
+| `unit` |  |
+| `value` |  |
 
 Operations: Load.
 
@@ -276,8 +282,10 @@ Create an instance: `local comparison = client:Comparison(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `status` | `string` |  |
+| `expression` | `string` |  |
+| `ratio` | `table` |  |
+| `resultTheirs` | `table` |  |
+| `resultYours` | `table` |  |
 
 #### Example: Load
 
@@ -323,8 +331,12 @@ Create an instance: `local wealth_expression = client:WealthExpression(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `status` | `string` |  |
+| `phrase` | `string` |  |
+| `scale` | `string` |  |
+| `sentence` | `string` |  |
+| `type` | `string` |  |
+| `unit` | `string` |  |
+| `value` | `number` |  |
 
 #### Example: Load
 

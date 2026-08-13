@@ -2,18 +2,24 @@
   "existing": {
     "comparison": {
       "COMPARISON00": {
-        "data": {},
-        "status": "s15",
+        "expression": "s28",
+        "ratio": {},
+        "resultTheirs": {},
+        "resultYours": {},
         "id": "COMPARISON00"
       },
       "COMPARISON01": {
-        "data": {},
-        "status": "s29",
+        "expression": "s50",
+        "ratio": {},
+        "resultTheirs": {},
+        "resultYours": {},
         "id": "COMPARISON01"
       },
       "COMPARISON02": {
-        "data": {},
-        "status": "s3d",
+        "expression": "s78",
+        "ratio": {},
+        "resultTheirs": {},
+        "resultYours": {},
         "id": "COMPARISON02"
       }
     }
@@ -21,8 +27,10 @@
   "new": {
     "comparison": {
       "comparison_ref01": {
-        "data": {},
-        "status": "s51"
+        "expression": "sa0",
+        "ratio": {},
+        "resultTheirs": {},
+        "resultYours": {}
       }
     }
   }

@@ -6,13 +6,17 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Comparison {
-  data: Record<string, any>
-  status: string
+  expression: string
+  ratio: Record<string, any>
+  resultTheirs: Record<string, any>
+  resultYours: Record<string, any>
 }
 
 export interface ComparisonLoadMatch {
-  data?: Record<string, any>
-  status?: string
+  expression?: string
+  ratio?: Record<string, any>
+  resultTheirs?: Record<string, any>
+  resultYours?: Record<string, any>
 }
 
 export interface Discovery {
@@ -24,12 +28,20 @@ export interface DiscoveryListMatch {
 }
 
 export interface WealthExpression {
-  data: Record<string, any>
-  status: string
+  phrase: string
+  scale: string
+  sentence: string
+  type: string
+  unit: string
+  value: number
 }
 
 export interface WealthExpressionLoadMatch {
-  data?: Record<string, any>
-  status?: string
+  phrase?: string
+  scale?: string
+  sentence?: string
+  type?: string
+  unit?: string
+  value?: number
 }
 

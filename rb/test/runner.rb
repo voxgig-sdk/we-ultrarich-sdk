@@ -23,8 +23,8 @@ module WeUltrarichTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("WEULTRARICH_TEST_LIVE")
-    override = getenv("WEULTRARICH_TEST_OVERRIDE")
+    live = getenv("WE_ULTRARICH_TEST_LIVE")
+    override = getenv("WE_ULTRARICH_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module WeUltrarichTestRunner
       end
     end
 
-    explain = getenv("WEULTRARICH_TEST_EXPLAIN")
-    m["WEULTRARICH_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("WE_ULTRARICH_TEST_EXPLAIN")
+    m["WE_ULTRARICH_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

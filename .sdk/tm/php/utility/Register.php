@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ WeUltrarichUtility::setRegistrar(function (WeUltrarichUtility $u): void {
     $u->prepare_params = [WeUltrarichPrepareParams::class, 'call'];
     $u->prepare_path = [WeUltrarichPreparePath::class, 'call'];
     $u->prepare_query = [WeUltrarichPrepareQuery::class, 'call'];
+    $u->graphql_body = [WeUltrarichGraphql::class, 'body'];
+    $u->graphql_errors = [WeUltrarichGraphql::class, 'errors'];
     $u->result_basic = [WeUltrarichResultBasic::class, 'call'];
     $u->result_body = [WeUltrarichResultBody::class, 'call'];
     $u->result_headers = [WeUltrarichResultHeaders::class, 'call'];

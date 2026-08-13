@@ -35,7 +35,7 @@ $client = new WeUltrarichSDK();
 
 ```php
 try {
-    // load() returns the bare Comparison record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Comparison record (throws on error).
     $comparison = $client->Comparison()->load();
     print_r($comparison);
 } catch (\Throwable $err) {
@@ -123,7 +123,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = WeUltrarichSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $comparison = $client->Comparison()->load();
 print_r($comparison);
 ```
@@ -225,7 +226,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -247,8 +248,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `expression` |  |
+| `ratio` |  |
+| `resultTheirs` |  |
+| `resultYours` |  |
 
 Operations: Load.
 
@@ -268,8 +271,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `phrase` |  |
+| `scale` |  |
+| `sentence` |  |
+| `type` |  |
+| `unit` |  |
+| `value` |  |
 
 Operations: Load.
 
@@ -294,13 +301,15 @@ Create an instance: `$comparison = $client->Comparison();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
-| `status` | `string` |  |
+| `expression` | `string` |  |
+| `ratio` | `array` |  |
+| `resultTheirs` | `array` |  |
+| `resultYours` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Comparison record (throws on error).
+// load() returns the ENTITY — call data_get() for the Comparison record (throws on error).
 $comparison = $client->Comparison()->load();
 ```
 
@@ -343,13 +352,17 @@ Create an instance: `$wealth_expression = $client->WealthExpression();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
-| `status` | `string` |  |
+| `phrase` | `string` |  |
+| `scale` | `string` |  |
+| `sentence` | `string` |  |
+| `type` | `string` |  |
+| `unit` | `string` |  |
+| `value` | `float` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare WealthExpression record (throws on error).
+// load() returns the ENTITY — call data_get() for the WealthExpression record (throws on error).
 $wealth_expression = $client->WealthExpression()->load();
 ```
 

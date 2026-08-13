@@ -34,7 +34,7 @@ client = WeUltrarichSDK.new
 
 ```ruby
 begin
-  # load returns the bare Comparison record (raises on error).
+  # load returns the ENTITY — call data_get for the Comparison record (raises on error).
   comparison = client.Comparison.load()
   puts comparison
 rescue => err
@@ -117,7 +117,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = WeUltrarichSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 comparison = client.Comparison.load()
 puts comparison
 ```
@@ -237,8 +238,10 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `expression` |  |
+| `ratio` |  |
+| `resultTheirs` |  |
+| `resultYours` |  |
 
 Operations: Load.
 
@@ -258,8 +261,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `phrase` |  |
+| `scale` |  |
+| `sentence` |  |
+| `type` |  |
+| `unit` |  |
+| `value` |  |
 
 Operations: Load.
 
@@ -284,13 +291,15 @@ Create an instance: `comparison = client.Comparison`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `status` | `String` |  |
+| `expression` | `String` |  |
+| `ratio` | `Hash` |  |
+| `resultTheirs` | `Hash` |  |
+| `resultYours` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Comparison record (raises on error).
+# load returns the ENTITY — call data_get for the Comparison record (raises on error).
 comparison = client.Comparison.load()
 ```
 
@@ -333,13 +342,17 @@ Create an instance: `wealth_expression = client.WealthExpression`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `status` | `String` |  |
+| `phrase` | `String` |  |
+| `scale` | `String` |  |
+| `sentence` | `String` |  |
+| `type` | `String` |  |
+| `unit` | `String` |  |
+| `value` | `Float` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare WealthExpression record (raises on error).
+# load returns the ENTITY — call data_get for the WealthExpression record (raises on error).
 wealth_expression = client.WealthExpression.load()
 ```
 

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# WeUltrarich SDK exists test
 
 import pytest
 from weultrarich_sdk import WeUltrarichSDK

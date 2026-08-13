@@ -60,11 +60,11 @@ function comparison_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["WEULTRARICH_TEST_COMPARISON_ENTID"] = {},
-    ["WEULTRARICH_TEST_LIVE"] = "FALSE",
+    ["WE_ULTRARICH_TEST_COMPARISON_ENTID"] = {},
+    ["WE_ULTRARICH_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["WEULTRARICH_TEST_LIVE"] == "TRUE"
+  local live = env["WE_ULTRARICH_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

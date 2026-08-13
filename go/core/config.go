@@ -28,17 +28,31 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "data",
+						"name": "expression",
 						"req": true,
-						"type": "`$OBJECT`",
+						"type": "`$STRING`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "status",
+						"name": "ratio",
 						"req": true,
-						"type": "`$STRING`",
+						"type": "`$OBJECT`",
 						"index$": 1,
+					},
+					map[string]any{
+						"active": true,
+						"name": "resultTheirs",
+						"req": true,
+						"type": "`$OBJECT`",
+						"index$": 2,
+					},
+					map[string]any{
+						"active": true,
+						"name": "resultYours",
+						"req": true,
+						"type": "`$OBJECT`",
+						"index$": 3,
 					},
 				},
 				"name": "comparison",
@@ -127,6 +141,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/comparison",
 								"parts": []any{
@@ -147,12 +162,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -178,6 +192,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/expressions",
 								"parts": []any{
@@ -186,12 +201,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -202,17 +216,45 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "data",
+						"name": "phrase",
 						"req": true,
-						"type": "`$OBJECT`",
+						"type": "`$STRING`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "status",
+						"name": "scale",
 						"req": true,
 						"type": "`$STRING`",
 						"index$": 1,
+					},
+					map[string]any{
+						"active": true,
+						"name": "sentence",
+						"req": true,
+						"type": "`$STRING`",
+						"index$": 2,
+					},
+					map[string]any{
+						"active": true,
+						"name": "type",
+						"req": true,
+						"type": "`$STRING`",
+						"index$": 3,
+					},
+					map[string]any{
+						"active": true,
+						"name": "unit",
+						"req": true,
+						"type": "`$STRING`",
+						"index$": 4,
+					},
+					map[string]any{
+						"active": true,
+						"name": "value",
+						"req": true,
+						"type": "`$NUMBER`",
+						"index$": 5,
 					},
 				},
 				"name": "wealth_expression",
@@ -261,6 +303,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/growthOfCompoundInterest",
 								"parts": []any{
@@ -276,7 +319,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 0,
 							},
@@ -302,6 +345,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/durationOfDailySpend",
 								"parts": []any{
@@ -315,7 +359,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 1,
 							},
@@ -341,6 +385,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/numberOfItems",
 								"parts": []any{
@@ -354,7 +399,7 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 2,
 							},
@@ -380,6 +425,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/heightOfMoneyStack",
 								"parts": []any{
@@ -393,12 +439,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.data`",
 								},
 								"index$": 3,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{

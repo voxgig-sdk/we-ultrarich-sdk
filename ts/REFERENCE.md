@@ -140,8 +140,10 @@ const comparison = client.Comparison()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | Yes |  |
-| `status` | `string` | Yes |  |
+| `expression` | `string` | Yes |  |
+| `ratio` | `Record<string, any>` | Yes |  |
+| `resultTheirs` | `Record<string, any>` | Yes |  |
+| `resultYours` | `Record<string, any>` | Yes |  |
 
 ### Operations
 
@@ -241,8 +243,12 @@ const wealth_expression = client.WealthExpression()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Record<string, any>` | Yes |  |
-| `status` | `string` | Yes |  |
+| `phrase` | `string` | Yes |  |
+| `scale` | `string` | Yes |  |
+| `sentence` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
+| `unit` | `string` | Yes |  |
+| `value` | `number` | Yes |  |
 
 ### Operations
 

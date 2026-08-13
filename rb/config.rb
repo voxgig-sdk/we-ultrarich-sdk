@@ -29,17 +29,31 @@ module WeUltrarichConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "data",
+              "name" => "expression",
               "req" => true,
-              "type" => "`$OBJECT`",
+              "type" => "`$STRING`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "status",
+              "name" => "ratio",
               "req" => true,
-              "type" => "`$STRING`",
+              "type" => "`$OBJECT`",
               "index$" => 1,
+            },
+            {
+              "active" => true,
+              "name" => "resultTheirs",
+              "req" => true,
+              "type" => "`$OBJECT`",
+              "index$" => 2,
+            },
+            {
+              "active" => true,
+              "name" => "resultYours",
+              "req" => true,
+              "type" => "`$OBJECT`",
+              "index$" => 3,
             },
           ],
           "name" => "comparison",
@@ -128,6 +142,7 @@ module WeUltrarichConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/comparison",
                   "parts" => [
@@ -148,7 +163,7 @@ module WeUltrarichConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -179,6 +194,7 @@ module WeUltrarichConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/expressions",
                   "parts" => [
@@ -187,7 +203,7 @@ module WeUltrarichConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -203,17 +219,45 @@ module WeUltrarichConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "data",
+              "name" => "phrase",
               "req" => true,
-              "type" => "`$OBJECT`",
+              "type" => "`$STRING`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "status",
+              "name" => "scale",
               "req" => true,
               "type" => "`$STRING`",
               "index$" => 1,
+            },
+            {
+              "active" => true,
+              "name" => "sentence",
+              "req" => true,
+              "type" => "`$STRING`",
+              "index$" => 2,
+            },
+            {
+              "active" => true,
+              "name" => "type",
+              "req" => true,
+              "type" => "`$STRING`",
+              "index$" => 3,
+            },
+            {
+              "active" => true,
+              "name" => "unit",
+              "req" => true,
+              "type" => "`$STRING`",
+              "index$" => 4,
+            },
+            {
+              "active" => true,
+              "name" => "value",
+              "req" => true,
+              "type" => "`$NUMBER`",
+              "index$" => 5,
             },
           ],
           "name" => "wealth_expression",
@@ -262,6 +306,7 @@ module WeUltrarichConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/growthOfCompoundInterest",
                   "parts" => [
@@ -277,7 +322,7 @@ module WeUltrarichConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 0,
                 },
@@ -303,6 +348,7 @@ module WeUltrarichConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/durationOfDailySpend",
                   "parts" => [
@@ -316,7 +362,7 @@ module WeUltrarichConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 1,
                 },
@@ -342,6 +388,7 @@ module WeUltrarichConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/numberOfItems",
                   "parts" => [
@@ -355,7 +402,7 @@ module WeUltrarichConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 2,
                 },
@@ -381,6 +428,7 @@ module WeUltrarichConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/heightOfMoneyStack",
                   "parts" => [
@@ -394,7 +442,7 @@ module WeUltrarichConfig
                   },
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.data`",
                   },
                   "index$" => 3,
                 },

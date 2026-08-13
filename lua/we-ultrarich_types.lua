@@ -7,12 +7,16 @@
 -- edit by hand.
 
 ---@class Comparison
----@field data table
----@field status string
+---@field expression string
+---@field ratio table
+---@field resultTheirs table
+---@field resultYours table
 
 ---@class ComparisonLoadMatch
----@field data? table
----@field status? string
+---@field expression? string
+---@field ratio? table
+---@field resultTheirs? table
+---@field resultYours? table
 
 ---@class Discovery
 ---@field route string
@@ -21,12 +25,20 @@
 ---@field route? string
 
 ---@class WealthExpression
----@field data table
----@field status string
+---@field phrase string
+---@field scale string
+---@field sentence string
+---@field type string
+---@field unit string
+---@field value number
 
 ---@class WealthExpressionLoadMatch
----@field data? table
----@field status? string
+---@field phrase? string
+---@field scale? string
+---@field sentence? string
+---@field type? string
+---@field unit? string
+---@field value? number
 
 local M = {}
 

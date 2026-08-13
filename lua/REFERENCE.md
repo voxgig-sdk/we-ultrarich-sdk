@@ -98,8 +98,10 @@ local comparison = client:Comparison(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes |  |
-| `status` | `string` | Yes |  |
+| `expression` | `string` | Yes |  |
+| `ratio` | `table` | Yes |  |
+| `resultTheirs` | `table` | Yes |  |
+| `resultYours` | `table` | Yes |  |
 
 ### Operations
 
@@ -203,8 +205,12 @@ local wealth_expression = client:WealthExpression(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | Yes |  |
-| `status` | `string` | Yes |  |
+| `phrase` | `string` | Yes |  |
+| `scale` | `string` | Yes |  |
+| `sentence` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
+| `unit` | `string` | Yes |  |
+| `value` | `number` | Yes |  |
 
 ### Operations
 

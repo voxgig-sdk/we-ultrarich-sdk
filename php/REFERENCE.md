@@ -100,8 +100,10 @@ $comparison = $client->Comparison();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
-| `status` | `string` | Yes |  |
+| `expression` | `string` | Yes |  |
+| `ratio` | `array` | Yes |  |
+| `resultTheirs` | `array` | Yes |  |
+| `resultYours` | `array` | Yes |  |
 
 ### Operations
 
@@ -205,8 +207,12 @@ $wealth_expression = $client->WealthExpression();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | Yes |  |
-| `status` | `string` | Yes |  |
+| `phrase` | `string` | Yes |  |
+| `scale` | `string` | Yes |  |
+| `sentence` | `string` | Yes |  |
+| `type` | `string` | Yes |  |
+| `unit` | `string` | Yes |  |
+| `value` | `float` | Yes |  |
 
 ### Operations
 

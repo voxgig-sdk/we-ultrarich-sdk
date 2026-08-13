@@ -15,15 +15,19 @@ declare(strict_types=1);
 /** Comparison entity data model. */
 class Comparison
 {
-    public array $data;
-    public string $status;
+    public string $expression;
+    public array $ratio;
+    public array $resultTheirs;
+    public array $resultYours;
 }
 
 /** Request payload for Comparison#load. */
 class ComparisonLoadMatch
 {
-    public ?array $data = null;
-    public ?string $status = null;
+    public ?string $expression = null;
+    public ?array $ratio = null;
+    public ?array $resultTheirs = null;
+    public ?array $resultYours = null;
 }
 
 /** Discovery entity data model. */
@@ -41,14 +45,22 @@ class DiscoveryListMatch
 /** WealthExpression entity data model. */
 class WealthExpression
 {
-    public array $data;
-    public string $status;
+    public string $phrase;
+    public string $scale;
+    public string $sentence;
+    public string $type;
+    public string $unit;
+    public float $value;
 }
 
 /** Request payload for WealthExpression#load. */
 class WealthExpressionLoadMatch
 {
-    public ?array $data = null;
-    public ?string $status = null;
+    public ?string $phrase = null;
+    public ?string $scale = null;
+    public ?string $sentence = null;
+    public ?string $type = null;
+    public ?string $unit = null;
+    public ?float $value = null;
 }
 

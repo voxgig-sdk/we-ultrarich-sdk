@@ -38,7 +38,7 @@ client = WeUltrarichSDK()
 
 ### 3. Load a comparison
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -122,7 +122,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = WeUltrarichSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 comparison = client.Comparison().load()
 # comparison contains the mock response record
 ```
@@ -221,7 +222,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -243,8 +244,10 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `expression` |  |
+| `ratio` |  |
+| `resultTheirs` |  |
+| `resultYours` |  |
 
 Operations: Load.
 
@@ -264,8 +267,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `status` |  |
+| `phrase` |  |
+| `scale` |  |
+| `sentence` |  |
+| `type` |  |
+| `unit` |  |
+| `value` |  |
 
 Operations: Load.
 
@@ -290,8 +297,10 @@ Create an instance: `comparison = client.Comparison()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
-| `status` | `str` |  |
+| `expression` | `str` |  |
+| `ratio` | `dict` |  |
+| `resultTheirs` | `dict` |  |
+| `resultYours` | `dict` |  |
 
 #### Example: Load
 
@@ -337,8 +346,12 @@ Create an instance: `wealth_expression = client.WealthExpression()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
-| `status` | `str` |  |
+| `phrase` | `str` |  |
+| `scale` | `str` |  |
+| `sentence` | `str` |  |
+| `type` | `str` |  |
+| `unit` | `str` |  |
+| `value` | `float` |  |
 
 #### Example: Load
 

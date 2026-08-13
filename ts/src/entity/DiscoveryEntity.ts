@@ -37,7 +37,7 @@ class DiscoveryEntity extends WeUltrarichEntityBase<Discovery> {
 
 
 
-  async list(this: any, reqmatch?: DiscoveryListMatch, ctrl?: Control): Promise<Discovery[]> {
+  async list(this: any, reqmatch?: DiscoveryListMatch, ctrl?: Control): Promise<DiscoveryEntity[]> {
 
     const utility = this._utility
 

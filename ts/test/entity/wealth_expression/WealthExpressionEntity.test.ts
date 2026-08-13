@@ -26,8 +26,8 @@ import {
 describe('WealthExpressionEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when WEULTRARICH_TEST_LIVE=TRUE.
-  afterEach(liveDelay('WEULTRARICH_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when WE_ULTRARICH_TEST_LIVE=TRUE.
+  afterEach(liveDelay('WE_ULTRARICH_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = WeUltrarichSDK.test()
@@ -62,7 +62,7 @@ describe('WealthExpressionEntity', async () => {
     // LOAD
     const wealth_expression_ref01_ent = client.WealthExpression()
     const wealth_expression_ref01_match_dt0: any = {}
-    const wealth_expression_ref01_data_dt0 = await wealth_expression_ref01_ent.load(wealth_expression_ref01_match_dt0)
+    const wealth_expression_ref01_data_dt0 = (await wealth_expression_ref01_ent.load(wealth_expression_ref01_match_dt0)).data()
     assert(null != wealth_expression_ref01_data_dt0)
 
 

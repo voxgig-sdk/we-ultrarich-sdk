@@ -25,7 +25,7 @@ main: kit: entity: discovery: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

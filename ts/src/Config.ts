@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'WeUltrarich',
   }
 
 
@@ -62,17 +62,31 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
+          "name": "expression",
           "req": true,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "status",
+          "name": "ratio",
           "req": true,
-          "type": "`$STRING`",
+          "type": "`$OBJECT`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "resultTheirs",
+          "req": true,
+          "type": "`$OBJECT`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "resultYours",
+          "req": true,
+          "type": "`$OBJECT`",
+          "index$": 3
         }
       ],
       "name": "comparison",
@@ -161,6 +175,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/comparison",
               "parts": [
@@ -181,7 +196,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -212,6 +227,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/expressions",
               "parts": [
@@ -220,7 +236,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -236,17 +252,45 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
+          "name": "phrase",
           "req": true,
-          "type": "`$OBJECT`",
+          "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "status",
+          "name": "scale",
           "req": true,
           "type": "`$STRING`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "sentence",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "type",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "unit",
+          "req": true,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "value",
+          "req": true,
+          "type": "`$NUMBER`",
+          "index$": 5
         }
       ],
       "name": "wealth_expression",
@@ -295,6 +339,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/growthOfCompoundInterest",
               "parts": [
@@ -310,7 +355,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             },
@@ -336,6 +381,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/durationOfDailySpend",
               "parts": [
@@ -349,7 +395,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 1
             },
@@ -375,6 +421,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/numberOfItems",
               "parts": [
@@ -388,7 +435,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 2
             },
@@ -414,6 +461,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/heightOfMoneyStack",
               "parts": [
@@ -427,7 +475,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 3
             }

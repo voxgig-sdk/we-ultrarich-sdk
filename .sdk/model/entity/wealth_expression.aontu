@@ -6,14 +6,34 @@ main: kit: entity: wealth_expression: {
 
   fields: [
     {
-      name: "data"
-      req: true
-      type: "`$OBJECT`"
-    }
-    {
-      name: "status"
+      name: "phrase"
       req: true
       type: "`$STRING`"
+    }
+    {
+      name: "scale"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "sentence"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "unit"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "value"
+      req: true
+      type: "`$NUMBER`"
     }
   ]
 
@@ -72,7 +92,7 @@ main: kit: entity: wealth_expression: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -107,7 +127,7 @@ main: kit: entity: wealth_expression: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -142,7 +162,7 @@ main: kit: entity: wealth_expression: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
         {
@@ -177,7 +197,7 @@ main: kit: entity: wealth_expression: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
