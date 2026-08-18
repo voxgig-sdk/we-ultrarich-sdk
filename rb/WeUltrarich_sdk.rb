@@ -28,7 +28,7 @@ class WeUltrarichSDK
     utility = WeUltrarichUtility.new
     @_utility = utility
 
-    config = WeUltrarichConfig.make_config
+    config = WeUltrarichConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

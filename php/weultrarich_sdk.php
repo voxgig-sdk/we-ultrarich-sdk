@@ -40,7 +40,7 @@ class WeUltrarichSDK
         $utility = new WeUltrarichUtility();
         $this->_utility = $utility;
 
-        $config = WeUltrarichConfig::make_config();
+        $config = WeUltrarichConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

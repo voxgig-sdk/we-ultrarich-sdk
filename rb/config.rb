@@ -1,6 +1,20 @@
 # WeUltrarich SDK configuration
 
 module WeUltrarichConfig
+  # Return the process-wide config, built once on first use. The SDK reads
+  # the config on every request and never writes to it, so one instance is
+  # shared by every client rather than rebuilt per client.
+  #
+  # The returned hash is shared: treat it as read-only. Callers that need to
+  # mutate should use make_config, which always returns a fresh copy.
+  def self.shared_config
+    @shared_config ||= make_config
+  end
+
+
+  # Build a fresh, fully materialised config hash. Every call rebuilds the
+  # whole structure, so prefer shared_config unless you need a private copy
+  # you intend to mutate.
   def self.make_config
     {
       "main" => {
@@ -28,32 +42,24 @@ module WeUltrarichConfig
         "comparison" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "expression",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "ratio",
               "req" => true,
               "type" => "`$OBJECT`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "resultTheirs",
               "req" => true,
               "type" => "`$OBJECT`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "resultYours",
               "req" => true,
               "type" => "`$OBJECT`",
-              "index$" => 3,
             },
           ],
           "name" => "comparison",
@@ -63,11 +69,9 @@ module WeUltrarichConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "expression",
                         "orig" => "expression",
@@ -75,57 +79,44 @@ module WeUltrarichConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "frequency",
                         "orig" => "frequency",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => 20,
                         "kind" => "query",
                         "name" => "period",
                         "orig" => "period",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "example" => 0.01,
                         "kind" => "query",
                         "name" => "rate",
                         "orig" => "rate",
-                        "reqd" => false,
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "spend",
                         "orig" => "spend",
-                        "reqd" => false,
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "type_of_item",
                         "orig" => "type_of_item",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "type_of_money",
                         "orig" => "type_of_money",
-                        "reqd" => false,
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "wealth_their",
                         "orig" => "wealth_their",
@@ -133,7 +124,6 @@ module WeUltrarichConfig
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "wealth_your",
                         "orig" => "wealth_your",
@@ -165,10 +155,8 @@ module WeUltrarichConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {
@@ -178,11 +166,9 @@ module WeUltrarichConfig
         "discovery" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "route",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
           ],
           "name" => "discovery",
@@ -192,7 +178,6 @@ module WeUltrarichConfig
               "name" => "list",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
@@ -205,10 +190,8 @@ module WeUltrarichConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 0,
                 },
               ],
-              "key$" => "list",
             },
           },
           "relations" => {
@@ -218,46 +201,34 @@ module WeUltrarichConfig
         "wealth_expression" => {
           "fields" => [
             {
-              "active" => true,
               "name" => "phrase",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 0,
             },
             {
-              "active" => true,
               "name" => "scale",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 1,
             },
             {
-              "active" => true,
               "name" => "sentence",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 2,
             },
             {
-              "active" => true,
               "name" => "type",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 3,
             },
             {
-              "active" => true,
               "name" => "unit",
               "req" => true,
               "type" => "`$STRING`",
-              "index$" => 4,
             },
             {
-              "active" => true,
               "name" => "value",
               "req" => true,
               "type" => "`$NUMBER`",
-              "index$" => 5,
             },
           ],
           "name" => "wealth_expression",
@@ -267,11 +238,9 @@ module WeUltrarichConfig
               "name" => "load",
               "points" => [
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "frequency",
                         "orig" => "frequency",
@@ -279,7 +248,6 @@ module WeUltrarichConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "example" => 20,
                         "kind" => "query",
                         "name" => "period",
@@ -288,7 +256,6 @@ module WeUltrarichConfig
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "example" => 0.01,
                         "kind" => "query",
                         "name" => "rate",
@@ -297,7 +264,6 @@ module WeUltrarichConfig
                         "type" => "`$NUMBER`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "wealth",
                         "orig" => "wealth",
@@ -324,14 +290,11 @@ module WeUltrarichConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 0,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "spend",
                         "orig" => "spend",
@@ -339,7 +302,6 @@ module WeUltrarichConfig
                         "type" => "`$ANY`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "wealth",
                         "orig" => "wealth",
@@ -364,14 +326,11 @@ module WeUltrarichConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 1,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "type_of_item",
                         "orig" => "type_of_item",
@@ -379,7 +338,6 @@ module WeUltrarichConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "wealth",
                         "orig" => "wealth",
@@ -404,14 +362,11 @@ module WeUltrarichConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 2,
                 },
                 {
-                  "active" => true,
                   "args" => {
                     "query" => [
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "type_of_money",
                         "orig" => "type_of_money",
@@ -419,7 +374,6 @@ module WeUltrarichConfig
                         "type" => "`$STRING`",
                       },
                       {
-                        "active" => true,
                         "kind" => "query",
                         "name" => "wealth",
                         "orig" => "wealth",
@@ -444,10 +398,8 @@ module WeUltrarichConfig
                     "req" => "`reqdata`",
                     "res" => "`body.data`",
                   },
-                  "index$" => 3,
                 },
               ],
-              "key$" => "load",
             },
           },
           "relations" => {

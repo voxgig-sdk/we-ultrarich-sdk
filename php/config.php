@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class WeUltrarichConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -33,32 +56,24 @@ class WeUltrarichConfig
         'comparison' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'expression',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'ratio',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'resultTheirs',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'resultYours',
               'req' => true,
               'type' => '`$OBJECT`',
-              'index$' => 3,
             ],
           ],
           'name' => 'comparison',
@@ -68,11 +83,9 @@ class WeUltrarichConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'expression',
                         'orig' => 'expression',
@@ -80,57 +93,44 @@ class WeUltrarichConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'frequency',
                         'orig' => 'frequency',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 20,
                         'kind' => 'query',
                         'name' => 'period',
                         'orig' => 'period',
-                        'reqd' => false,
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0.01,
                         'kind' => 'query',
                         'name' => 'rate',
                         'orig' => 'rate',
-                        'reqd' => false,
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'spend',
                         'orig' => 'spend',
-                        'reqd' => false,
                         'type' => '`$ANY`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type_of_item',
                         'orig' => 'type_of_item',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type_of_money',
                         'orig' => 'type_of_money',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'wealth_their',
                         'orig' => 'wealth_their',
@@ -138,7 +138,6 @@ class WeUltrarichConfig
                         'type' => '`$ANY`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'wealth_your',
                         'orig' => 'wealth_your',
@@ -170,10 +169,8 @@ class WeUltrarichConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -183,11 +180,9 @@ class WeUltrarichConfig
         'discovery' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'route',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
           ],
           'name' => 'discovery',
@@ -197,7 +192,6 @@ class WeUltrarichConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
@@ -210,10 +204,8 @@ class WeUltrarichConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -223,46 +215,34 @@ class WeUltrarichConfig
         'wealth_expression' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'phrase',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'scale',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'sentence',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'type',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'unit',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'value',
               'req' => true,
               'type' => '`$NUMBER`',
-              'index$' => 5,
             ],
           ],
           'name' => 'wealth_expression',
@@ -272,11 +252,9 @@ class WeUltrarichConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'frequency',
                         'orig' => 'frequency',
@@ -284,7 +262,6 @@ class WeUltrarichConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 20,
                         'kind' => 'query',
                         'name' => 'period',
@@ -293,7 +270,6 @@ class WeUltrarichConfig
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 0.01,
                         'kind' => 'query',
                         'name' => 'rate',
@@ -302,7 +278,6 @@ class WeUltrarichConfig
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'wealth',
                         'orig' => 'wealth',
@@ -329,14 +304,11 @@ class WeUltrarichConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'spend',
                         'orig' => 'spend',
@@ -344,7 +316,6 @@ class WeUltrarichConfig
                         'type' => '`$ANY`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'wealth',
                         'orig' => 'wealth',
@@ -369,14 +340,11 @@ class WeUltrarichConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type_of_item',
                         'orig' => 'type_of_item',
@@ -384,7 +352,6 @@ class WeUltrarichConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'wealth',
                         'orig' => 'wealth',
@@ -409,14 +376,11 @@ class WeUltrarichConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 2,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'type_of_money',
                         'orig' => 'type_of_money',
@@ -424,7 +388,6 @@ class WeUltrarichConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'wealth',
                         'orig' => 'wealth',
@@ -449,10 +412,8 @@ class WeUltrarichConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
-                  'index$' => 3,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
