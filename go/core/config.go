@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "WeUltrarich",
+			"slug": "we-ultrarich",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -36,21 +39,25 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "expression",
 						"req": true,
+						"short": "The expression that was computed for both wealths (echoed so the payload is self-describing).",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "ratio",
 						"req": true,
+						"short": "The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger).",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "resultTheirs",
 						"req": true,
+						"short": "The expression's result for wealthTheirs.",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "resultYours",
 						"req": true,
+						"short": "The expression's result for wealthYours.",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -160,6 +167,7 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "route",
 						"req": true,
+						"short": "The path to each available wealth expression.",
 						"type": "`$STRING`",
 					},
 				},
@@ -195,31 +203,37 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "phrase",
 						"req": true,
+						"short": "A phrase of the growth of compounded interest (title-cased for use as a standalone label).",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "scale",
 						"req": true,
+						"short": "A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose).",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "sentence",
 						"req": true,
+						"short": "A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose).",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "type",
 						"req": true,
+						"short": "This expression doesn't have any types.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "unit",
 						"req": true,
+						"short": "The unit for growth of compounded interest.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "value",
 						"req": true,
+						"short": "The value for growth of compounded interest.",
 						"type": "`$NUMBER`",
 					},
 				},

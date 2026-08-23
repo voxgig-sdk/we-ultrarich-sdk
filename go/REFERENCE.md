@@ -106,10 +106,10 @@ fmt.Println(comparison.GetName()) // "comparison"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `expression` | `string` | Yes |  |
-| `ratio` | `map[string]any` | Yes |  |
-| `resultTheirs` | `map[string]any` | Yes |  |
-| `resultYours` | `map[string]any` | Yes |  |
+| `expression` | `string` | Yes | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | `map[string]any` | Yes | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | `map[string]any` | Yes | The expression's result for wealthTheirs. |
+| `resultYours` | `map[string]any` | Yes | The expression's result for wealthYours. |
 
 ### Operations
 
@@ -160,7 +160,7 @@ fmt.Println(discovery.GetName()) // "discovery"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `route` | `string` | Yes |  |
+| `route` | `string` | Yes | The path to each available wealth expression. |
 
 ### Operations
 
@@ -211,12 +211,12 @@ fmt.Println(wealthExpression.GetName()) // "wealth_expression"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `phrase` | `string` | Yes |  |
-| `scale` | `string` | Yes |  |
-| `sentence` | `string` | Yes |  |
-| `type` | `string` | Yes |  |
-| `unit` | `string` | Yes |  |
-| `value` | `float64` | Yes |  |
+| `phrase` | `string` | Yes | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | `string` | Yes | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | `string` | Yes | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | `string` | Yes | This expression doesn't have any types. |
+| `unit` | `string` | Yes | The unit for growth of compounded interest. |
+| `value` | `float64` | Yes | The value for growth of compounded interest. |
 
 ### Operations
 

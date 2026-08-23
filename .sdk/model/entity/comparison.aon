@@ -8,21 +8,25 @@ main: kit: entity: comparison: {
     {
       name: "expression"
       req: true
+      short: "The expression that was computed for both wealths (echoed so the payload is self-describing)."
       type: "`$STRING`"
     }
     {
       name: "ratio"
       req: true
+      short: "The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger)."
       type: "`$OBJECT`"
     }
     {
       name: "resultTheirs"
       req: true
+      short: "The expression's result for wealthTheirs."
       type: "`$OBJECT`"
     }
     {
       name: "resultYours"
       req: true
+      short: "The expression's result for wealthYours."
       type: "`$OBJECT`"
     }
   ]

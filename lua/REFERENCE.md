@@ -98,10 +98,10 @@ local comparison = client:Comparison(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `expression` | `string` | Yes |  |
-| `ratio` | `table` | Yes |  |
-| `resultTheirs` | `table` | Yes |  |
-| `resultYours` | `table` | Yes |  |
+| `expression` | `string` | Yes | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | `table` | Yes | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | `table` | Yes | The expression's result for wealthTheirs. |
+| `resultYours` | `table` | Yes | The expression's result for wealthYours. |
 
 ### Operations
 
@@ -153,7 +153,7 @@ local discovery = client:Discovery(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `route` | `string` | Yes |  |
+| `route` | `string` | Yes | The path to each available wealth expression. |
 
 ### Operations
 
@@ -205,12 +205,12 @@ local wealth_expression = client:WealthExpression(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `phrase` | `string` | Yes |  |
-| `scale` | `string` | Yes |  |
-| `sentence` | `string` | Yes |  |
-| `type` | `string` | Yes |  |
-| `unit` | `string` | Yes |  |
-| `value` | `number` | Yes |  |
+| `phrase` | `string` | Yes | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | `string` | Yes | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | `string` | Yes | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | `string` | Yes | This expression doesn't have any types. |
+| `unit` | `string` | Yes | The unit for growth of compounded interest. |
+| `value` | `number` | Yes | The value for growth of compounded interest. |
 
 ### Operations
 

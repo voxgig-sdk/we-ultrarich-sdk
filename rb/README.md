@@ -238,10 +238,10 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `expression` |  |
-| `ratio` |  |
-| `resultTheirs` |  |
-| `resultYours` |  |
+| `expression` | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | The expression's result for wealthTheirs. |
+| `resultYours` | The expression's result for wealthYours. |
 
 Operations: Load.
 
@@ -251,7 +251,7 @@ API path: `/comparison`
 
 | Field | Description |
 | --- | --- |
-| `route` |  |
+| `route` | The path to each available wealth expression. |
 
 Operations: List.
 
@@ -261,12 +261,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `phrase` |  |
-| `scale` |  |
-| `sentence` |  |
-| `type` |  |
-| `unit` |  |
-| `value` |  |
+| `phrase` | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | This expression doesn't have any types. |
+| `unit` | The unit for growth of compounded interest. |
+| `value` | The value for growth of compounded interest. |
 
 Operations: Load.
 
@@ -291,10 +291,10 @@ Create an instance: `comparison = client.Comparison`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `expression` | `String` |  |
-| `ratio` | `Hash` |  |
-| `resultTheirs` | `Hash` |  |
-| `resultYours` | `Hash` |  |
+| `expression` | `String` | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | `Hash` | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | `Hash` | The expression's result for wealthTheirs. |
+| `resultYours` | `Hash` | The expression's result for wealthYours. |
 
 #### Example: Load
 
@@ -318,7 +318,7 @@ Create an instance: `discovery = client.Discovery`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `route` | `String` |  |
+| `route` | `String` | The path to each available wealth expression. |
 
 #### Example: List
 
@@ -342,12 +342,12 @@ Create an instance: `wealth_expression = client.WealthExpression`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `phrase` | `String` |  |
-| `scale` | `String` |  |
-| `sentence` | `String` |  |
-| `type` | `String` |  |
-| `unit` | `String` |  |
-| `value` | `Float` |  |
+| `phrase` | `String` | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | `String` | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | `String` | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | `String` | This expression doesn't have any types. |
+| `unit` | `String` | The unit for growth of compounded interest. |
+| `value` | `Float` | The value for growth of compounded interest. |
 
 #### Example: Load
 

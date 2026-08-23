@@ -6,7 +6,7 @@ The Golang SDK for the WeUltrarich API — an entity-oriented client using stand
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Comparison(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -262,10 +262,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"expression"` |  |
-| `"ratio"` |  |
-| `"resultTheirs"` |  |
-| `"resultYours"` |  |
+| `"expression"` | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `"ratio"` | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `"resultTheirs"` | The expression's result for wealthTheirs. |
+| `"resultYours"` | The expression's result for wealthYours. |
 
 Operations: Load.
 
@@ -275,7 +275,7 @@ API path: `/comparison`
 
 | Field | Description |
 | --- | --- |
-| `"route"` |  |
+| `"route"` | The path to each available wealth expression. |
 
 Operations: List.
 
@@ -285,12 +285,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `"phrase"` |  |
-| `"scale"` |  |
-| `"sentence"` |  |
-| `"type"` |  |
-| `"unit"` |  |
-| `"value"` |  |
+| `"phrase"` | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `"scale"` | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `"sentence"` | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `"type"` | This expression doesn't have any types. |
+| `"unit"` | The unit for growth of compounded interest. |
+| `"value"` | The value for growth of compounded interest. |
 
 Operations: Load.
 
@@ -315,10 +315,10 @@ Create an instance: `comparison := client.Comparison(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `expression` | `string` |  |
-| `ratio` | `map[string]any` |  |
-| `resultTheirs` | `map[string]any` |  |
-| `resultYours` | `map[string]any` |  |
+| `expression` | `string` | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | `map[string]any` | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | `map[string]any` | The expression's result for wealthTheirs. |
+| `resultYours` | `map[string]any` | The expression's result for wealthYours. |
 
 #### Example: Load
 
@@ -345,7 +345,7 @@ Create an instance: `discovery := client.Discovery(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `route` | `string` |  |
+| `route` | `string` | The path to each available wealth expression. |
 
 #### Example: List
 
@@ -372,12 +372,12 @@ Create an instance: `wealthExpression := client.WealthExpression(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `phrase` | `string` |  |
-| `scale` | `string` |  |
-| `sentence` | `string` |  |
-| `type` | `string` |  |
-| `unit` | `string` |  |
-| `value` | `float64` |  |
+| `phrase` | `string` | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | `string` | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | `string` | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | `string` | This expression doesn't have any types. |
+| `unit` | `string` | The unit for growth of compounded interest. |
+| `value` | `float64` | The value for growth of compounded interest. |
 
 #### Example: Load
 

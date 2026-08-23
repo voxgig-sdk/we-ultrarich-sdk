@@ -8,6 +8,7 @@ main: kit: entity: discovery: {
     {
       name: "route"
       req: true
+      short: "The path to each available wealth expression."
       type: "`$STRING`"
     }
   ]

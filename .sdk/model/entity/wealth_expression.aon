@@ -8,31 +8,37 @@ main: kit: entity: wealth_expression: {
     {
       name: "phrase"
       req: true
+      short: "A phrase of the growth of compounded interest (title-cased for use as a standalone label)."
       type: "`$STRING`"
     }
     {
       name: "scale"
       req: true
+      short: "A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose)."
       type: "`$STRING`"
     }
     {
       name: "sentence"
       req: true
+      short: "A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose)."
       type: "`$STRING`"
     }
     {
       name: "type"
       req: true
+      short: "This expression doesn't have any types."
       type: "`$STRING`"
     }
     {
       name: "unit"
       req: true
+      short: "The unit for growth of compounded interest."
       type: "`$STRING`"
     }
     {
       name: "value"
       req: true
+      short: "The value for growth of compounded interest."
       type: "`$NUMBER`"
     }
   ]

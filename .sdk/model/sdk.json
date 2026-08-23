@@ -36,24 +36,28 @@
               "active": true,
               "name": "expression",
               "req": true,
+              "short": "The expression that was computed for both wealths (echoed so the payload is self-describing).",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "ratio",
               "req": true,
+              "short": "The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger).",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "resultTheirs",
               "req": true,
+              "short": "The expression's result for wealthTheirs.",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "resultYours",
               "req": true,
+              "short": "The expression's result for wealthYours.",
               "type": "`$OBJECT`"
             }
           ],
@@ -184,6 +188,7 @@
               "active": true,
               "name": "route",
               "req": true,
+              "short": "The path to each available wealth expression.",
               "type": "`$STRING`"
             }
           ],
@@ -225,36 +230,42 @@
               "active": true,
               "name": "phrase",
               "req": true,
+              "short": "A phrase of the growth of compounded interest (title-cased for use as a standalone label).",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "scale",
               "req": true,
+              "short": "A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose).",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "sentence",
               "req": true,
+              "short": "A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose).",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "type",
               "req": true,
+              "short": "This expression doesn't have any types.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "unit",
               "req": true,
+              "short": "The unit for growth of compounded interest.",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "value",
               "req": true,
+              "short": "The value for growth of compounded interest.",
               "type": "`$NUMBER`"
             }
           ],

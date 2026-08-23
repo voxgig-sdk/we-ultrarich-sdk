@@ -244,10 +244,10 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `expression` |  |
-| `ratio` |  |
-| `resultTheirs` |  |
-| `resultYours` |  |
+| `expression` | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | The expression's result for wealthTheirs. |
+| `resultYours` | The expression's result for wealthYours. |
 
 Operations: Load.
 
@@ -257,7 +257,7 @@ API path: `/comparison`
 
 | Field | Description |
 | --- | --- |
-| `route` |  |
+| `route` | The path to each available wealth expression. |
 
 Operations: List.
 
@@ -267,12 +267,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `phrase` |  |
-| `scale` |  |
-| `sentence` |  |
-| `type` |  |
-| `unit` |  |
-| `value` |  |
+| `phrase` | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | This expression doesn't have any types. |
+| `unit` | The unit for growth of compounded interest. |
+| `value` | The value for growth of compounded interest. |
 
 Operations: Load.
 
@@ -297,10 +297,10 @@ Create an instance: `comparison = client.Comparison()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `expression` | `str` |  |
-| `ratio` | `dict` |  |
-| `resultTheirs` | `dict` |  |
-| `resultYours` | `dict` |  |
+| `expression` | `str` | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | `dict` | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | `dict` | The expression's result for wealthTheirs. |
+| `resultYours` | `dict` | The expression's result for wealthYours. |
 
 #### Example: Load
 
@@ -323,7 +323,7 @@ Create an instance: `discovery = client.Discovery()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `route` | `str` |  |
+| `route` | `str` | The path to each available wealth expression. |
 
 #### Example: List
 
@@ -346,12 +346,12 @@ Create an instance: `wealth_expression = client.WealthExpression()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `phrase` | `str` |  |
-| `scale` | `str` |  |
-| `sentence` | `str` |  |
-| `type` | `str` |  |
-| `unit` | `str` |  |
-| `value` | `float` |  |
+| `phrase` | `str` | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | `str` | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | `str` | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | `str` | This expression doesn't have any types. |
+| `unit` | `str` | The unit for growth of compounded interest. |
+| `value` | `float` | The value for growth of compounded interest. |
 
 #### Example: Load
 

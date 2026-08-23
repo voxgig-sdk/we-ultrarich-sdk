@@ -101,10 +101,10 @@ comparison = client.Comparison
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `expression` | `String` | Yes |  |
-| `ratio` | `Hash` | Yes |  |
-| `resultTheirs` | `Hash` | Yes |  |
-| `resultYours` | `Hash` | Yes |  |
+| `expression` | `String` | Yes | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | `Hash` | Yes | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | `Hash` | Yes | The expression's result for wealthTheirs. |
+| `resultYours` | `Hash` | Yes | The expression's result for wealthYours. |
 
 ### Operations
 
@@ -156,7 +156,7 @@ discovery = client.Discovery
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `route` | `String` | Yes |  |
+| `route` | `String` | Yes | The path to each available wealth expression. |
 
 ### Operations
 
@@ -208,12 +208,12 @@ wealth_expression = client.WealthExpression
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `phrase` | `String` | Yes |  |
-| `scale` | `String` | Yes |  |
-| `sentence` | `String` | Yes |  |
-| `type` | `String` | Yes |  |
-| `unit` | `String` | Yes |  |
-| `value` | `Float` | Yes |  |
+| `phrase` | `String` | Yes | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | `String` | Yes | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | `String` | Yes | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | `String` | Yes | This expression doesn't have any types. |
+| `unit` | `String` | Yes | The unit for growth of compounded interest. |
+| `value` | `Float` | Yes | The value for growth of compounded interest. |
 
 ### Operations
 

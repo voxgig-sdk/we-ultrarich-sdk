@@ -229,10 +229,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `expression` |  |
-| `ratio` |  |
-| `resultTheirs` |  |
-| `resultYours` |  |
+| `expression` | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | The expression's result for wealthTheirs. |
+| `resultYours` | The expression's result for wealthYours. |
 
 Operations: Load.
 
@@ -242,7 +242,7 @@ API path: `/comparison`
 
 | Field | Description |
 | --- | --- |
-| `route` |  |
+| `route` | The path to each available wealth expression. |
 
 Operations: List.
 
@@ -252,12 +252,12 @@ API path: `/expressions`
 
 | Field | Description |
 | --- | --- |
-| `phrase` |  |
-| `scale` |  |
-| `sentence` |  |
-| `type` |  |
-| `unit` |  |
-| `value` |  |
+| `phrase` | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | This expression doesn't have any types. |
+| `unit` | The unit for growth of compounded interest. |
+| `value` | The value for growth of compounded interest. |
 
 Operations: Load.
 
@@ -282,10 +282,10 @@ Create an instance: `local comparison = client:Comparison(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `expression` | `string` |  |
-| `ratio` | `table` |  |
-| `resultTheirs` | `table` |  |
-| `resultYours` | `table` |  |
+| `expression` | `string` | The expression that was computed for both wealths (echoed so the payload is self-describing). |
+| `ratio` | `table` | The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger). |
+| `resultTheirs` | `table` | The expression's result for wealthTheirs. |
+| `resultYours` | `table` | The expression's result for wealthYours. |
 
 #### Example: Load
 
@@ -308,7 +308,7 @@ Create an instance: `local discovery = client:Discovery(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `route` | `string` |  |
+| `route` | `string` | The path to each available wealth expression. |
 
 #### Example: List
 
@@ -331,12 +331,12 @@ Create an instance: `local wealth_expression = client:WealthExpression(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `phrase` | `string` |  |
-| `scale` | `string` |  |
-| `sentence` | `string` |  |
-| `type` | `string` |  |
-| `unit` | `string` |  |
-| `value` | `number` |  |
+| `phrase` | `string` | A phrase of the growth of compounded interest (title-cased for use as a standalone label). |
+| `scale` | `string` | A complete sentence providing context for the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `sentence` | `string` | A complete sentence summarizing the expression and its growth of compounded interest result (sentence-cased for use as inline prose). |
+| `type` | `string` | This expression doesn't have any types. |
+| `unit` | `string` | The unit for growth of compounded interest. |
+| `value` | `number` | The value for growth of compounded interest. |
 
 #### Example: Load
 
