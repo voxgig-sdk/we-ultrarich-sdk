@@ -28,6 +28,7 @@ module WeUltrarichConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
