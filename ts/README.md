@@ -39,7 +39,7 @@ const client = new WeUltrarichSDK()
 
 ```ts
 try {
-  const comparison = await client.Comparison().load()
+  const comparison = await client.Comparison().load({ expression: 'example_expression', wealth_their: 'example_wealth_their', wealth_your: 'example_wealth_your' })
   console.log(comparison)
 } catch (err) {
   console.error('load failed:', err)
@@ -53,7 +53,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const comparison = await client.Comparison().load()
+  const comparison = await client.Comparison().load({ expression: "example", wealth_their: "example", wealth_your: "example" })
   console.log(comparison)
 } catch (err) {
   console.error('load failed:', err)
@@ -120,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = WeUltrarichSDK.test()
 
-const comparison = await client.Comparison().load()
+const comparison = await client.Comparison().load({ expression: 'example_expression', wealth_their: 'example_wealth_their', wealth_your: 'example_wealth_your' })
 // comparison is the entity, populated with mock response data
 // — call comparison.data() for the record itself
 console.log(comparison)
@@ -141,7 +141,7 @@ Entity instances remember their last match and data:
 const entity = client.Comparison()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ expression: 'example_expression', wealth_their: 'example_wealth_their', wealth_your: 'example_wealth_your' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -351,7 +351,7 @@ Create an instance: `const comparison = client.Comparison()`
 #### Example: Load
 
 ```ts
-const comparison = await client.Comparison().load()
+const comparison = await client.Comparison().load({ expression: 'expression', wealth_their: 'wealth_their', wealth_your: 'wealth_your' })
 ```
 
 
@@ -402,8 +402,31 @@ Create an instance: `const wealth_expression = client.WealthExpression()`
 #### Example: Load
 
 ```ts
-const wealth_expression = await client.WealthExpression().load()
+const wealth_expression = await client.WealthExpression().load({ wealth: 'wealth' })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -476,7 +499,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const comparison = client.Comparison()
-await comparison.load()
+await comparison.load({ expression: "example", wealth_their: "example", wealth_your: "example" })
 
 // comparison.data() now returns the comparison data from the last `load`
 // comparison.match() returns the last match criteria

@@ -42,7 +42,7 @@ client = WeUltrarichSDK()
 
 ```python
 try:
-    comparison = client.Comparison().load()
+    comparison = client.Comparison().load({"expression": "example_expression", "wealth_their": "example_wealth_their", "wealth_your": "example_wealth_your"})
     print(comparison)
 except Exception as err:
     print(f"load failed: {err}")
@@ -55,7 +55,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    comparison = client.Comparison().load()
+    comparison = client.Comparison().load({"expression": "example", "wealth_their": "example", "wealth_your": "example"})
     print(comparison)
 except Exception as err:
     print(f"load failed: {err}")
@@ -124,7 +124,7 @@ client = WeUltrarichSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-comparison = client.Comparison().load()
+comparison = client.Comparison().load({"expression": "example", "wealth_their": "example", "wealth_your": "example"})
 # comparison contains the mock response record
 ```
 
@@ -305,7 +305,7 @@ Create an instance: `comparison = client.Comparison()`
 #### Example: Load
 
 ```python
-comparison = client.Comparison().load()
+comparison = client.Comparison().load({"expression": "expression", "wealth_their": "wealth_their", "wealth_your": "wealth_your"})
 ```
 
 
@@ -356,8 +356,31 @@ Create an instance: `wealth_expression = client.WealthExpression()`
 #### Example: Load
 
 ```python
-wealth_expression = client.WealthExpression().load()
+wealth_expression = client.WealthExpression().load({"wealth": "wealth"})
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -436,7 +459,7 @@ stores the returned data and match criteria internally.
 
 ```python
 comparison = client.Comparison()
-comparison.load()
+comparison.load({"expression": "example", "wealth_their": "example", "wealth_your": "example"})
 
 # comparison.data_get() now returns the comparison data from the last load
 # comparison.match_get() returns the last match criteria

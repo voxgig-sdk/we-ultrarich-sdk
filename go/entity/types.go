@@ -22,10 +22,15 @@ type Comparison struct {
 
 // ComparisonLoadMatch is the typed request payload for Comparison.LoadTyped.
 type ComparisonLoadMatch struct {
-	Expression *string `json:"expression,omitempty"`
-	Ratio *map[string]any `json:"ratio,omitempty"`
-	ResultTheirs *map[string]any `json:"resultTheirs,omitempty"`
-	ResultYours *map[string]any `json:"resultYours,omitempty"`
+	Expression string `json:"expression"`
+	Frequency *string `json:"frequency,omitempty"`
+	Period *float64 `json:"period,omitempty"`
+	Rate *float64 `json:"rate,omitempty"`
+	Spend *any `json:"spend,omitempty"`
+	TypeOfItem *string `json:"type_of_item,omitempty"`
+	TypeOfMoney *string `json:"type_of_money,omitempty"`
+	WealthTheir any `json:"wealth_their"`
+	WealthYour any `json:"wealth_your"`
 }
 
 // Discovery is the typed data model for the discovery entity.
@@ -50,12 +55,13 @@ type WealthExpression struct {
 
 // WealthExpressionLoadMatch is the typed request payload for WealthExpression.LoadTyped.
 type WealthExpressionLoadMatch struct {
-	Phrase *string `json:"phrase,omitempty"`
-	Scale *string `json:"scale,omitempty"`
-	Sentence *string `json:"sentence,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Unit *string `json:"unit,omitempty"`
-	Value *float64 `json:"value,omitempty"`
+	Frequency *string `json:"frequency,omitempty"`
+	Period *float64 `json:"period,omitempty"`
+	Rate *float64 `json:"rate,omitempty"`
+	Wealth any `json:"wealth"`
+	Spend *any `json:"spend,omitempty"`
+	TypeOfItem *string `json:"type_of_item,omitempty"`
+	TypeOfMoney *string `json:"type_of_money,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

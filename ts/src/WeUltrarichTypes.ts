@@ -13,10 +13,15 @@ export interface Comparison {
 }
 
 export interface ComparisonLoadMatch {
-  expression?: string
-  ratio?: Record<string, any>
-  resultTheirs?: Record<string, any>
-  resultYours?: Record<string, any>
+  expression: string
+  frequency?: string
+  period?: number
+  rate?: number
+  spend?: any
+  type_of_item?: string
+  type_of_money?: string
+  wealth_their: any
+  wealth_your: any
 }
 
 export interface Discovery {
@@ -37,11 +42,12 @@ export interface WealthExpression {
 }
 
 export interface WealthExpressionLoadMatch {
-  phrase?: string
-  scale?: string
-  sentence?: string
-  type?: string
-  unit?: string
-  value?: number
+  frequency?: string
+  period?: number
+  rate?: number
+  wealth: any
+  spend?: any
+  type_of_item?: string
+  type_of_money?: string
 }
 

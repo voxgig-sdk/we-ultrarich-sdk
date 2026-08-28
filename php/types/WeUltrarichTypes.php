@@ -24,10 +24,15 @@ class Comparison
 /** Request payload for Comparison#load. */
 class ComparisonLoadMatch
 {
-    public ?string $expression = null;
-    public ?array $ratio = null;
-    public ?array $resultTheirs = null;
-    public ?array $resultYours = null;
+    public string $expression;
+    public ?string $frequency = null;
+    public ?float $period = null;
+    public ?float $rate = null;
+    public mixed $spend = null;
+    public ?string $type_of_item = null;
+    public ?string $type_of_money = null;
+    public mixed $wealth_their;
+    public mixed $wealth_your;
 }
 
 /** Discovery entity data model. */
@@ -56,11 +61,12 @@ class WealthExpression
 /** Request payload for WealthExpression#load. */
 class WealthExpressionLoadMatch
 {
-    public ?string $phrase = null;
-    public ?string $scale = null;
-    public ?string $sentence = null;
-    public ?string $type = null;
-    public ?string $unit = null;
-    public ?float $value = null;
+    public ?string $frequency = null;
+    public ?float $period = null;
+    public ?float $rate = null;
+    public mixed $wealth;
+    public mixed $spend = null;
+    public ?string $type_of_item = null;
+    public ?string $type_of_money = null;
 }
 

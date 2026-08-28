@@ -13,10 +13,15 @@
 ---@field resultYours table
 
 ---@class ComparisonLoadMatch
----@field expression? string
----@field ratio? table
----@field resultTheirs? table
----@field resultYours? table
+---@field expression string
+---@field frequency? string
+---@field period? number
+---@field rate? number
+---@field spend? any
+---@field type_of_item? string
+---@field type_of_money? string
+---@field wealth_their any
+---@field wealth_your any
 
 ---@class Discovery
 ---@field route string
@@ -33,12 +38,13 @@
 ---@field value number
 
 ---@class WealthExpressionLoadMatch
----@field phrase? string
----@field scale? string
----@field sentence? string
----@field type? string
----@field unit? string
----@field value? number
+---@field frequency? string
+---@field period? number
+---@field rate? number
+---@field wealth any
+---@field spend? any
+---@field type_of_item? string
+---@field type_of_money? string
 
 local M = {}
 

@@ -36,7 +36,7 @@ local client = sdk.new()
 ### 3. Load a comparison
 
 ```lua
-local comparison, err = client:Comparison():load()
+local comparison, err = client:Comparison():load({ expression = "example_expression", wealth_their = "example_wealth_their", wealth_your = "example_wealth_your" })
 if err then error(err) end
 print(comparison)
 ```
@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local comparison, err = client:Comparison():load()
+local comparison, err = client:Comparison():load({ expression = "example", wealth_their = "example", wealth_your = "example" })
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Comparison():load()
+local result, err = client:Comparison():load({ expression = "example", wealth_their = "example", wealth_your = "example" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -290,7 +290,7 @@ Create an instance: `local comparison = client:Comparison(nil)`
 #### Example: Load
 
 ```lua
-local comparison, err = client:Comparison():load()
+local comparison, err = client:Comparison():load({ expression = "expression", wealth_their = "wealth_their", wealth_your = "wealth_your" })
 ```
 
 
@@ -341,8 +341,31 @@ Create an instance: `local wealth_expression = client:WealthExpression(nil)`
 #### Example: Load
 
 ```lua
-local wealth_expression, err = client:WealthExpression():load()
+local wealth_expression, err = client:WealthExpression():load({ wealth = "wealth" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -422,7 +445,7 @@ stores the returned data and match criteria internally.
 
 ```lua
 local comparison = client:Comparison()
-comparison:load()
+comparison:load({ expression = "example", wealth_their = "example", wealth_your = "example" })
 
 -- comparison:data_get() now returns the comparison data from the last load
 -- comparison:match_get() returns the last match criteria

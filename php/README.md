@@ -36,7 +36,7 @@ $client = new WeUltrarichSDK();
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the Comparison record (throws on error).
-    $comparison = $client->Comparison()->load();
+    $comparison = $client->Comparison()->load(["expression" => "example_expression", "wealth_their" => "example_wealth_their", "wealth_your" => "example_wealth_your"]);
     print_r($comparison);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $comparison = $client->Comparison()->load();
+    $comparison = $client->Comparison()->load(["expression" => "example", "wealth_their" => "example", "wealth_your" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,7 +125,7 @@ $client = WeUltrarichSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$comparison = $client->Comparison()->load();
+$comparison = $client->Comparison()->load(["expression" => "example", "wealth_their" => "example", "wealth_your" => "example"]);
 print_r($comparison);
 ```
 
@@ -310,7 +310,7 @@ Create an instance: `$comparison = $client->Comparison();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Comparison record (throws on error).
-$comparison = $client->Comparison()->load();
+$comparison = $client->Comparison()->load(["expression" => "expression", "wealth_their" => "wealth_their", "wealth_your" => "wealth_your"]);
 ```
 
 
@@ -363,8 +363,31 @@ Create an instance: `$wealth_expression = $client->WealthExpression();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the WealthExpression record (throws on error).
-$wealth_expression = $client->WealthExpression()->load();
+$wealth_expression = $client->WealthExpression()->load(["wealth" => "wealth"]);
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -444,7 +467,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $comparison = $client->Comparison();
-$comparison->load();
+$comparison->load(["expression" => "example", "wealth_their" => "example", "wealth_your" => "example"]);
 
 // $comparison->data_get() now returns the comparison data from the last load
 // $comparison->match_get() returns the last match criteria

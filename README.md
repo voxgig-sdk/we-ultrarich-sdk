@@ -14,6 +14,10 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
+> **Features:** `test` — opt-in,
+> inactive until switched on, and configured per client. See the Features
+> section of any SDK README below for what each one does.
+
 ## Entities, not endpoints
 
 This SDK exposes the API as a small set of **semantic entities** — Comparison, Discovery and WealthExpression — that you
@@ -23,7 +27,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new WeUltrarichSDK()
-const comparison = await client.Comparison().load()
+const comparison = await client.Comparison().load({ expression: "example", wealth_their: "example", wealth_your: "example" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -47,7 +51,7 @@ const client = WeUltrarichSDK.test({
     },
   },
 })
-const comparison = await client.Comparison().load()
+const comparison = await client.Comparison().load({ expression: 'example_expression', wealth_their: 'example_wealth_their', wealth_your: 'example_wealth_your' })
 // comparison is the Comparison entity, populated with mock data
 // — call comparison.data() for the record itself
 console.log(comparison)
@@ -57,7 +61,7 @@ console.log(comparison)
 
 ```python
 client = WeUltrarichSDK.test()
-comparison = client.Comparison().load()
+comparison = client.Comparison().load({"expression": "example", "wealth_their": "example", "wealth_your": "example"})
 print(comparison)
 ```
 
@@ -68,7 +72,7 @@ print(comparison)
 $client = WeUltrarichSDK::test([
     "entity" => ["comparison" => ["test01" => []]],
 ]);
-$comparison = $client->Comparison()->load();
+$comparison = $client->Comparison()->load(["expression" => "example", "wealth_their" => "example", "wealth_your" => "example"]);
 ```
 
 ### Golang
@@ -87,14 +91,14 @@ result, err := client.Comparison(nil).Load(
 client = WeUltrarichSDK.test({
   "entity" => { "comparison" => { "test01" => {} } },
 })
-comparison = client.Comparison.load()
+comparison = client.Comparison.load({ "expression" => "example", "wealth_their" => "example", "wealth_your" => "example" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Comparison():load()
+local result, err = client:Comparison():load({ expression = "example", wealth_their = "example", wealth_your = "example" })
 ```
 
 ## Packages
@@ -180,7 +184,7 @@ client = WeUltrarichSDK()
 
 
 # Load a specific comparison (returns the record, raises on error)
-comparison = client.Comparison().load()
+comparison = client.Comparison().load({"expression": "example_expression", "wealth_their": "example_wealth_their", "wealth_your": "example_wealth_your"})
 print(comparison)
 ```
 
@@ -194,7 +198,7 @@ $client = new WeUltrarichSDK();
 
 
 // Load a specific comparison (returns the ENTITY; call data_get() for the record; throws on error)
-$comparison = $client->Comparison()->load();
+$comparison = $client->Comparison()->load(["expression" => "example_expression", "wealth_their" => "example_wealth_their", "wealth_your" => "example_wealth_your"]);
 print_r($comparison);
 ```
 
@@ -206,7 +210,7 @@ import sdk "github.com/voxgig-sdk/we-ultrarich-sdk/go"
 client := sdk.New()
 
 // Load comparison data
-comparison, err := client.Comparison(nil).Load(nil, nil)
+comparison, err := client.Comparison(nil).Load(map[string]any{"expression": "example_expression", "wealth_their": "example_wealth_their", "wealth_your": "example_wealth_your"}, nil)
 if err != nil {
     panic(err)
 }
@@ -222,7 +226,7 @@ client = WeUltrarichSDK.new
 
 
 # Load a specific comparison (returns the ENTITY; call data_get for the record)
-comparison = client.Comparison.load()
+comparison = client.Comparison.load({ "expression" => "example_expression", "wealth_their" => "example_wealth_their", "wealth_your" => "example_wealth_your" })
 puts comparison
 ```
 
@@ -235,7 +239,7 @@ local client = sdk.new()
 
 
 -- Load a specific comparison
-local comparison, err = client:Comparison():load()
+local comparison, err = client:Comparison():load({ expression = "example_expression", wealth_their = "example_wealth_their", wealth_your = "example_wealth_your" })
 print(comparison)
 ```
 
@@ -341,6 +345,32 @@ forking the SDK.
 | **TestFeature** | In-memory mock transport for testing without a live server |
 
 Pass custom features via the `extend` option at construction time.
+
+## Customizing this SDK
+
+This repository contains its own generator (`.sdk/`), so the SDK is
+customizable without forking any upstream tool:
+
+- **The model** (`.sdk/model/`) declares everything this project owns:
+  package names, versions, active features, per-target settings. It is
+  written in [aontu](https://github.com/aontu-lang/aontu), a JSON-based
+  specification language designed for building ontologies: easy to edit
+  by hand, and files unify rather than override, so small declarations
+  compose into one model. Regeneration re-reads it every time.
+- **Templates** (`.sdk/tm/`) and **components** (`.sdk/src/cmp/`) are
+  the two layers of generation, copied into this repo: templates are the
+  literal per-language source, components generate the API-shaped parts.
+- **Regeneration merges.** By default, newly generated content is
+  three-way merged into existing files, so generator updates and local
+  edits usually converge without manual conflict handling. A project can
+  opt for plain overwrite instead.
+- **Custom features and entire custom targets** arrive through sdkgen
+  packages (`voxgig-sdkgen package add`), on the same rails as the
+  bundled languages, and `voxgig-sdkgen doctor` reports any drift from
+  what a resync would write.
+
+How-to: [customize and propagate templates](https://github.com/voxgig/sdkgen/blob/main/docs/how-to/customize-and-propagate-templates.md).
+The full story: [voxgig.com/sdk/custom](https://voxgig.com/sdk/custom).
 
 ## Per-language documentation
 

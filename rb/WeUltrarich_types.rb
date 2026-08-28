@@ -32,21 +32,41 @@ Comparison = Struct.new(
 # Request payload for Comparison#load.
 #
 # @!attribute [rw] expression
+#   @return [String]
+#
+# @!attribute [rw] frequency
 #   @return [String, nil]
 #
-# @!attribute [rw] ratio
-#   @return [Hash, nil]
+# @!attribute [rw] period
+#   @return [Float, nil]
 #
-# @!attribute [rw] resultTheirs
-#   @return [Hash, nil]
+# @!attribute [rw] rate
+#   @return [Float, nil]
 #
-# @!attribute [rw] resultYours
-#   @return [Hash, nil]
+# @!attribute [rw] spend
+#   @return [Object, nil]
+#
+# @!attribute [rw] type_of_item
+#   @return [String, nil]
+#
+# @!attribute [rw] type_of_money
+#   @return [String, nil]
+#
+# @!attribute [rw] wealth_their
+#   @return [Object]
+#
+# @!attribute [rw] wealth_your
+#   @return [Object]
 ComparisonLoadMatch = Struct.new(
   :expression,
-  :ratio,
-  :resultTheirs,
-  :resultYours,
+  :frequency,
+  :period,
+  :rate,
+  :spend,
+  :type_of_item,
+  :type_of_money,
+  :wealth_their,
+  :wealth_your,
   keyword_init: true
 )
 
@@ -99,30 +119,34 @@ WealthExpression = Struct.new(
 
 # Request payload for WealthExpression#load.
 #
-# @!attribute [rw] phrase
+# @!attribute [rw] frequency
 #   @return [String, nil]
 #
-# @!attribute [rw] scale
-#   @return [String, nil]
-#
-# @!attribute [rw] sentence
-#   @return [String, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
-#
-# @!attribute [rw] unit
-#   @return [String, nil]
-#
-# @!attribute [rw] value
+# @!attribute [rw] period
 #   @return [Float, nil]
+#
+# @!attribute [rw] rate
+#   @return [Float, nil]
+#
+# @!attribute [rw] wealth
+#   @return [Object]
+#
+# @!attribute [rw] spend
+#   @return [Object, nil]
+#
+# @!attribute [rw] type_of_item
+#   @return [String, nil]
+#
+# @!attribute [rw] type_of_money
+#   @return [String, nil]
 WealthExpressionLoadMatch = Struct.new(
-  :phrase,
-  :scale,
-  :sentence,
-  :type,
-  :unit,
-  :value,
+  :frequency,
+  :period,
+  :rate,
+  :wealth,
+  :spend,
+  :type_of_item,
+  :type_of_money,
   keyword_init: true
 )
 

@@ -23,11 +23,19 @@ class Comparison(TypedDict):
     resultYours: dict
 
 
-class ComparisonLoadMatch(TypedDict, total=False):
+class ComparisonLoadMatchRequired(TypedDict):
     expression: str
-    ratio: dict
-    resultTheirs: dict
-    resultYours: dict
+    wealth_their: Any
+    wealth_your: Any
+
+
+class ComparisonLoadMatch(ComparisonLoadMatchRequired, total=False):
+    frequency: str
+    period: float
+    rate: float
+    spend: Any
+    type_of_item: str
+    type_of_money: str
 
 
 class Discovery(TypedDict):
@@ -47,10 +55,14 @@ class WealthExpression(TypedDict):
     value: float
 
 
-class WealthExpressionLoadMatch(TypedDict, total=False):
-    phrase: str
-    scale: str
-    sentence: str
-    type: str
-    unit: str
-    value: float
+class WealthExpressionLoadMatchRequired(TypedDict):
+    wealth: Any
+
+
+class WealthExpressionLoadMatch(WealthExpressionLoadMatchRequired, total=False):
+    frequency: str
+    period: float
+    rate: float
+    spend: Any
+    type_of_item: str
+    type_of_money: str

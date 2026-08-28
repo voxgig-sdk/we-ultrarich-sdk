@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Load a single comparison — the value is the loaded record.
-    comparison, err := client.Comparison(nil).Load(nil, nil)
+    comparison, err := client.Comparison(nil).Load(map[string]any{"expression": "example_expression", "wealth_their": "example_wealth_their", "wealth_your": "example_wealth_your"}, nil)
     if err != nil {
         panic(err)
     }
@@ -66,7 +66,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-comparison, err := client.Comparison(nil).Load(nil, nil)
+comparison, err := client.Comparison(nil).Load(map[string]any{"expression": "example", "wealth_their": "example", "wealth_your": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -136,7 +136,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 comparison, err := client.Comparison(nil).Load(
-    nil, nil,
+    map[string]any{"expression": "example", "wealth_their": "example", "wealth_your": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -323,7 +323,7 @@ Create an instance: `comparison := client.Comparison(nil)`
 #### Example: Load
 
 ```go
-comparison, err := client.Comparison(nil).Load(nil, nil)
+comparison, err := client.Comparison(nil).Load(map[string]any{"expression": "expression", "wealth_their": "wealth_their", "wealth_your": "wealth_your"}, nil)
 if err != nil {
     panic(err)
 }
@@ -382,12 +382,35 @@ Create an instance: `wealthExpression := client.WealthExpression(nil)`
 #### Example: Load
 
 ```go
-wealthExpression, err := client.WealthExpression(nil).Load(nil, nil)
+wealthExpression, err := client.WealthExpression(nil).Load(map[string]any{"wealth": "wealth"}, nil)
 if err != nil {
     panic(err)
 }
 fmt.Println(wealthExpression) // the loaded record
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -464,7 +487,7 @@ stores the returned data and match criteria internally.
 
 ```go
 comparison := client.Comparison(nil)
-comparison.Load(nil, nil)
+comparison.Load(map[string]any{"expression": "example", "wealth_their": "example", "wealth_your": "example"}, nil)
 
 // comparison.Data() now returns the comparison data from the last load
 // comparison.Match() returns the last match criteria
