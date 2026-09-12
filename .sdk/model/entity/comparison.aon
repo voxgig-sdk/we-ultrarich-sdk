@@ -108,8 +108,10 @@ main: kit: entity: comparison: {
           }
           method: "GET"
           orig: "/comparison"
-          parts: [
-            "comparison"
+          segments: [
+            {
+              lit: "comparison"
+            }
           ]
           select: {
             exist: [

@@ -157,8 +157,10 @@ class WeUltrarichConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/comparison',
-                  'parts' => [
-                    'comparison',
+                  'segments' => [
+                    [
+                      'lit' => 'comparison',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -176,6 +178,9 @@ class WeUltrarichConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'comparison',
                   ],
                 ],
               ],
@@ -205,13 +210,18 @@ class WeUltrarichConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/expressions',
-                  'parts' => [
-                    'expressions',
+                  'segments' => [
+                    [
+                      'lit' => 'expressions',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'expressions',
                   ],
                 ],
               ],
@@ -304,8 +314,10 @@ class WeUltrarichConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/growthOfCompoundInterest',
-                  'parts' => [
-                    'growthOfCompoundInterest',
+                  'segments' => [
+                    [
+                      'lit' => 'growthOfCompoundInterest',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -318,6 +330,9 @@ class WeUltrarichConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'growthOfCompoundInterest',
                   ],
                 ],
                 [
@@ -342,8 +357,10 @@ class WeUltrarichConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/durationOfDailySpend',
-                  'parts' => [
-                    'durationOfDailySpend',
+                  'segments' => [
+                    [
+                      'lit' => 'durationOfDailySpend',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -354,6 +371,9 @@ class WeUltrarichConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'durationOfDailySpend',
                   ],
                 ],
                 [
@@ -378,8 +398,10 @@ class WeUltrarichConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/numberOfItems',
-                  'parts' => [
-                    'numberOfItems',
+                  'segments' => [
+                    [
+                      'lit' => 'numberOfItems',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -390,6 +412,9 @@ class WeUltrarichConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'numberOfItems',
                   ],
                 ],
                 [
@@ -414,8 +439,10 @@ class WeUltrarichConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/heightOfMoneyStack',
-                  'parts' => [
-                    'heightOfMoneyStack',
+                  'segments' => [
+                    [
+                      'lit' => 'heightOfMoneyStack',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -426,6 +453,9 @@ class WeUltrarichConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'heightOfMoneyStack',
                   ],
                 ],
               ],

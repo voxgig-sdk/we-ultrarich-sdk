@@ -21,8 +21,10 @@ main: kit: entity: discovery: {
         {
           method: "GET"
           orig: "/expressions"
-          parts: [
-            "expressions"
+          segments: [
+            {
+              lit: "expressions"
+            }
           ]
           transform: {
             req: "`reqdata`"

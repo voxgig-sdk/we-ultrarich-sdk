@@ -63,8 +63,11 @@ def _comparison_direct_setup(mockres):
     live = env.get("WE_ULTRARICH_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
-        }
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
+        })
         client = WeUltrarichSDK(merged_opts)
         return {
             "client": client,

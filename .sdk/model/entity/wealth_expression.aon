@@ -85,8 +85,10 @@ main: kit: entity: wealth_expression: {
           }
           method: "GET"
           orig: "/growthOfCompoundInterest"
-          parts: [
-            "growthOfCompoundInterest"
+          segments: [
+            {
+              lit: "growthOfCompoundInterest"
+            }
           ]
           select: {
             exist: [
@@ -122,8 +124,10 @@ main: kit: entity: wealth_expression: {
           }
           method: "GET"
           orig: "/durationOfDailySpend"
-          parts: [
-            "durationOfDailySpend"
+          segments: [
+            {
+              lit: "durationOfDailySpend"
+            }
           ]
           select: {
             exist: [
@@ -157,8 +161,10 @@ main: kit: entity: wealth_expression: {
           }
           method: "GET"
           orig: "/numberOfItems"
-          parts: [
-            "numberOfItems"
+          segments: [
+            {
+              lit: "numberOfItems"
+            }
           ]
           select: {
             exist: [
@@ -192,8 +198,10 @@ main: kit: entity: wealth_expression: {
           }
           method: "GET"
           orig: "/heightOfMoneyStack"
-          parts: [
-            "heightOfMoneyStack"
+          segments: [
+            {
+              lit: "heightOfMoneyStack"
+            }
           ]
           select: {
             exist: [

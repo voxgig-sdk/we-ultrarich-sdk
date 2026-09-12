@@ -1,6 +1,14 @@
 # WeUltrarich SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -152,8 +160,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/comparison",
-                "parts": [
-                  "comparison",
+                "segments": [
+                  {
+                    "lit": "comparison",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -172,6 +182,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "comparison",
+                ],
               },
             ],
           },
@@ -200,14 +213,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/expressions",
-                "parts": [
-                  "expressions",
+                "segments": [
+                  {
+                    "lit": "expressions",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "expressions",
+                ],
               },
             ],
           },
@@ -299,8 +317,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/growthOfCompoundInterest",
-                "parts": [
-                  "growthOfCompoundInterest",
+                "segments": [
+                  {
+                    "lit": "growthOfCompoundInterest",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -314,6 +334,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "growthOfCompoundInterest",
+                ],
               },
               {
                 "args": {
@@ -337,8 +360,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/durationOfDailySpend",
-                "parts": [
-                  "durationOfDailySpend",
+                "segments": [
+                  {
+                    "lit": "durationOfDailySpend",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -350,6 +375,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "durationOfDailySpend",
+                ],
               },
               {
                 "args": {
@@ -373,8 +401,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/numberOfItems",
-                "parts": [
-                  "numberOfItems",
+                "segments": [
+                  {
+                    "lit": "numberOfItems",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -386,6 +416,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "numberOfItems",
+                ],
               },
               {
                 "args": {
@@ -409,8 +442,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/heightOfMoneyStack",
-                "parts": [
-                  "heightOfMoneyStack",
+                "segments": [
+                  {
+                    "lit": "heightOfMoneyStack",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -422,6 +457,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "heightOfMoneyStack",
+                ],
               },
             ],
           },

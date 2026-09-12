@@ -131,8 +131,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/comparison",
-                ["parts"] = {
-                  "comparison",
+                ["segments"] = {
+                  {
+                    ["lit"] = "comparison",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -150,6 +152,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "comparison",
                 },
               },
             },
@@ -179,13 +184,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/expressions",
-                ["parts"] = {
-                  "expressions",
+                ["segments"] = {
+                  {
+                    ["lit"] = "expressions",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "expressions",
                 },
               },
             },
@@ -278,8 +288,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/growthOfCompoundInterest",
-                ["parts"] = {
-                  "growthOfCompoundInterest",
+                ["segments"] = {
+                  {
+                    ["lit"] = "growthOfCompoundInterest",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -292,6 +304,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "growthOfCompoundInterest",
                 },
               },
               {
@@ -316,8 +331,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/durationOfDailySpend",
-                ["parts"] = {
-                  "durationOfDailySpend",
+                ["segments"] = {
+                  {
+                    ["lit"] = "durationOfDailySpend",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -328,6 +345,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "durationOfDailySpend",
                 },
               },
               {
@@ -352,8 +372,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/numberOfItems",
-                ["parts"] = {
-                  "numberOfItems",
+                ["segments"] = {
+                  {
+                    ["lit"] = "numberOfItems",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -364,6 +386,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "numberOfItems",
                 },
               },
               {
@@ -388,8 +413,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/heightOfMoneyStack",
-                ["parts"] = {
-                  "heightOfMoneyStack",
+                ["segments"] = {
+                  {
+                    ["lit"] = "heightOfMoneyStack",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -400,6 +427,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.data`",
+                },
+                ["parts"] = {
+                  "heightOfMoneyStack",
                 },
               },
             },
