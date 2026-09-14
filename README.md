@@ -105,7 +105,7 @@ local result, err = client:Comparison():load({ expression = "example", wealth_th
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
+| TypeScript | `@voxgig-sdk/we-ultrarich-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
 | Python | `voxgig-sdk-we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
 | PHP | `voxgig-sdk/we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/we-ultrarich-sdk/go` | `go get github.com/voxgig-sdk/we-ultrarich-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Comparison():load({ expression = "example", wealth_th
 ### TypeScript
 
 ```ts
-import { WeUltrarichSDK } from '@voxgig-sdk/we-ultrarich'
+import { WeUltrarichSDK } from '@voxgig-sdk/we-ultrarich-sdk'
 
 const client = new WeUltrarichSDK()
 

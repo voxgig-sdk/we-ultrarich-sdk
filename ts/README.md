@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { WeUltrarichSDK } from '@voxgig-sdk/we-ultrarich'
+import { WeUltrarichSDK } from '@voxgig-sdk/we-ultrarich-sdk'
 
 const client = new WeUltrarichSDK()
 ```
@@ -488,7 +488,7 @@ we-ultrarich/
 Import the SDK from the package root:
 
 ```ts
-import { WeUltrarichSDK } from '@voxgig-sdk/we-ultrarich'
+import { WeUltrarichSDK } from '@voxgig-sdk/we-ultrarich-sdk'
 ```
 
 ### Entity state
