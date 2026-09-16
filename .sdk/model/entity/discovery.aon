@@ -19,6 +19,12 @@ main: kit: entity: discovery: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /expressions"
+            json: "{\"operationId\":\"expressions\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"example\":[{\"route\":\"/v1/durationOfDailySpend\"},{\"route\":\"/v1/heightOfMoneyStack\"},{\"route\":\"/v1/numberOfItems\"},{\"route\":\"/v1/growthOfCompoundInterest\"},{\"route\":\"/v1/comparison\"}],\"items\":{\"properties\":{\"route\":{\"description\":\"The path to each available wealth expression.\",\"type\":\"string\"}},\"required\":[\"route\"],\"type\":\"object\"},\"type\":\"array\"},\"status\":{\"example\":\"success\",\"type\":\"string\"}},\"required\":[\"status\",\"data\"],\"type\":\"object\"}}},\"description\":\"a JSON object with response data\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"properties\":{\"code\":{\"example\":429,\"type\":\"integer\"},\"details\":{\"example\":\"Rate limit exceeded. Try again in 60 seconds.\",\"type\":\"string\"},\"message\":{\"example\":\"Too Many Requests\",\"type\":\"string\"},\"retryAfter\":{\"description\":\"The number of seconds remaining until the rate-limit window resets.\",\"example\":60,\"type\":\"integer\"}},\"required\":[\"code\",\"message\",\"details\",\"retryAfter\"],\"type\":\"object\"},\"status\":{\"example\":\"error\",\"type\":\"string\"}},\"required\":[\"status\",\"error\"],\"type\":\"object\"}}},\"description\":\"rate limit exceeded\",\"headers\":{\"Retry-After\":{\"description\":\"The number of seconds remaining until the rate-limit window resets.\",\"schema\":{\"example\":60,\"type\":\"integer\"}}}}},\"security\":[],\"securitySource\":\"definition\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/expressions"
           segments: [

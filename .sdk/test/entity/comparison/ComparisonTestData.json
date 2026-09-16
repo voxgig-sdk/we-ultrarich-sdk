@@ -33,5 +33,466 @@
         "resultYours": {}
       }
     }
+  },
+  "requests": {
+    "GET /comparison": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "comparison",
+        "parameters": [
+          {
+            "description": "Expression is the wealth expression to compute for both wealths (the crux of this comparison): * `durationOfDailySpend` - also requires `spend` * `heightOfMoneyStack` - also requires `typeOfMoney` * `numberOfItems` - also requires `typeOfItem` * `growthOfCompoundInterest` - also requires `rate`, `frequency`, and `period`\n",
+            "in": "query",
+            "name": "expression",
+            "required": true,
+            "schema": {
+              "enum": [
+                "durationOfDailySpend",
+                "heightOfMoneyStack",
+                "numberOfItems",
+                "growthOfCompoundInterest"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Wealth Yours is the amount of money of the user (\"your\" wealth) to be compared via the specified expression.",
+            "in": "query",
+            "name": "wealthYours",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "description": "a numeric amount with or without decimal places",
+                  "example": 1000000000,
+                  "maximum": 1e+24,
+                  "minimum": 1,
+                  "type": "number"
+                },
+                {
+                  "description": "a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "Wealth Theirs is the amount of money of the ultrarich (\"their\" wealth) to be compared via the specified expression.",
+            "in": "query",
+            "name": "wealthTheirs",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "description": "a numeric amount with or without decimal places",
+                  "example": 1000000000,
+                  "maximum": 1e+24,
+                  "minimum": 1,
+                  "type": "number"
+                },
+                {
+                  "description": "a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "Spend is the amount of money to be spent daily. Required when expression is durationOfDailySpend; ignored otherwise.",
+            "in": "query",
+            "name": "spend",
+            "required": false,
+            "schema": {
+              "oneOf": [
+                {
+                  "description": "a numeric amount with or without decimal places",
+                  "example": 1000,
+                  "maximum": 1e+24,
+                  "minimum": 1,
+                  "type": "number"
+                },
+                {
+                  "description": "a string with a local-formatted number (like 1,000,000) or shorthand (like 1M) with or without a URL-encoded currency symbol",
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "Type Of Money is the money to be stacked. Required when expression is heightOfMoneyStack; ignored otherwise. * `usd_1_coin` - Dollar Coins (USD; 2 mm per coin); * `usd_100_bill` - Hundred-Dollar Bills (USD; 0.11 mm per bill); * `cad_1_coin` - Loonies (CAD; 1.95 mm per coin); * `cad_100_bill` - Hundred-Dollar Bills (CAD; 0.0875 mm per bill); * `eur_1_coin` - Euro Coins (EUR; 2.33 mm per coin); * `eur_100_bill` - Hundred-Euro Bills (EUR; 0.12 mm per bill); * `gbp_1_coin` - Pound Coins (GBP; 2.8 mm per coin); * `gbp_100_bill` - Hundred-Pound Bills (GBP; 0.0825 mm per bill); * `cny_1_coin` - Yuan Coins (CNY; 1.85 mm per coin); * `cny_100_bill` - Hundred-Yuan Bills (CNY; 0.1 mm per bill); * `inr_1_coin` - Rupee Coins (INR; 1.45 mm per coin); * `inr_100_bill` - Hundred-Rupee Bills (INR; 0.11 mm per bill); * `krw_1_coin` - Won Coins (KRW; 1.45 mm per coin); * `krw_1000_bill` - Thousand-Won Bills (KRW; 0.1 mm per bill); * `rub_1_coin` - Ruble Coins (RUB; 1.5 mm per coin); * `rub_100_bill` - Hundred-Ruble Bills (RUB; 0.1 mm per bill); * `try_1_coin` - Lira Coins (TRY; 2 mm per coin); * `try_100_bill` - Hundred-Lira Bills (TRY; 0.105 mm per bill); * `chf_1_coin` - Franc Coins (CHF; 1.55 mm per coin); * `chf_100_bill` - Hundred-Franc Bills (CHF; 0.11 mm per bill); * `brl_1_coin` - Real Coins (BRL; 1.95 mm per coin); or * `brl_100_bill` - Hundred-Real Bills (BRL; 0.105 mm per bill).\n",
+            "in": "query",
+            "name": "typeOfMoney",
+            "required": false,
+            "schema": {
+              "enum": [
+                "usd_1_coin",
+                "usd_100_bill",
+                "cad_1_coin",
+                "cad_100_bill",
+                "eur_1_coin",
+                "eur_100_bill",
+                "gbp_1_coin",
+                "gbp_100_bill",
+                "cny_1_coin",
+                "cny_100_bill",
+                "inr_1_coin",
+                "inr_100_bill",
+                "krw_1_coin",
+                "krw_1000_bill",
+                "rub_1_coin",
+                "rub_100_bill",
+                "try_1_coin",
+                "try_100_bill",
+                "chf_1_coin",
+                "chf_100_bill",
+                "brl_1_coin",
+                "brl_100_bill"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Type Of Item is the item to be bought or paid for/off. Required when expression is numberOfItems; ignored otherwise. * `fancy_coffee` - $10 Fancy Coffee * `quick_meal` - $15 Quick Meal * `dinner_with_drinks` - $175 Dinner With Drinks * `iphone` - $1,400 iPhone * `month_of_childcare` - $1,750 Month Of Childcare * `rent_or_mortgage_payment` - $3,000 Rent Or Mortgage Payment * `year_of_low_minimum_wage_salary` - Year Of Low Minimum Wage Salary ($15,080) * `year_of_high_minimum_wage_salary` - Year Of High Minimum Wage Salary ($32,240) * `student_loan_debt` - $40K Student Loan Debt * `car` - $50K Car * `year_of_salary_65k` - Year Of $65,000 Salary * `year_of_salary_100k` - Year Of $100,000 Salary * `luxury_car` - $275K Luxury Car * `house` - $500K House * `yacht` - $800K Yacht * `supercar` - $4M Supercar * `island` - $30M Island * `mansion` - $75M Mansion * `estate_with_a_mega_mansion` - $200M Estate With A Mega-Mansion * `luxury_island` - $300M Luxury Island * `superyacht` - $600M Superyacht\n",
+            "in": "query",
+            "name": "typeOfItem",
+            "required": false,
+            "schema": {
+              "enum": [
+                "fancy_coffee",
+                "quick_meal",
+                "dinner_with_drinks",
+                "iphone",
+                "month_of_childcare",
+                "rent_or_mortgage_payment",
+                "year_of_low_minimum_wage_salary",
+                "year_of_high_minimum_wage_salary",
+                "student_loan_debt",
+                "car",
+                "year_of_salary_65k",
+                "year_of_salary_100k",
+                "luxury_car",
+                "house",
+                "yacht",
+                "supercar",
+                "island",
+                "mansion",
+                "estate_with_a_mega_mansion",
+                "luxury_island",
+                "superyacht"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Rate is the interest rate at which the wealths are compounded. Required when expression is growthOfCompoundInterest; ignored otherwise.",
+            "in": "query",
+            "name": "rate",
+            "required": false,
+            "schema": {
+              "example": 0.01,
+              "exclusiveMaximum": true,
+              "exclusiveMinimum": true,
+              "format": "float",
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            }
+          },
+          {
+            "description": "Frequency is how often the wealths are compounded (1 Annually; 2 Semiannually; 4 Quarterly; 12 Monthly; 365 Daily). Required when expression is growthOfCompoundInterest; ignored otherwise.",
+            "in": "query",
+            "name": "frequency",
+            "required": false,
+            "schema": {
+              "enum": [
+                "1",
+                "2",
+                "4",
+                "12",
+                "365"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Period is the duration of time in years over which the wealths are compounded. Required when expression is growthOfCompoundInterest; ignored otherwise.",
+            "in": "query",
+            "name": "period",
+            "required": false,
+            "schema": {
+              "example": 20,
+              "exclusiveMaximum": true,
+              "exclusiveMinimum": true,
+              "maximum": 100,
+              "minimum": 0,
+              "type": "number"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "expression": {
+                          "description": "The expression that was computed for both wealths (echoed so the payload is self-describing).",
+                          "example": "durationOfDailySpend",
+                          "type": "string"
+                        },
+                        "ratio": {
+                          "description": "The ratio between the two wealths (wealthTheirs divided by wealthYours; values below 1 mean wealthYours is the larger).",
+                          "properties": {
+                            "phrase": {
+                              "description": "A phrase of the ratio with the 1 on the smaller side (title-cased for use as a standalone label).",
+                              "example": "1,000,000 : 1",
+                              "type": "string"
+                            },
+                            "scale": {
+                              "description": "A complete sentence assessing the ratio, tiered by magnitude (ratios of 200-to-1 or more are described as extreme wealth inequality, per IMF context).",
+                              "example": "That's extreme wealth inequality.",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "sentence": {
+                              "description": "A complete direction-aware sentence summarizing the ratio (sentence-cased for use as inline prose).",
+                              "example": "Their wealth is 1,000,000 times yours.",
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "The raw numeric ratio of wealthTheirs to wealthYours.",
+                              "example": 1000000,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "phrase",
+                            "sentence",
+                            "scale"
+                          ],
+                          "type": "object"
+                        },
+                        "resultTheirs": {
+                          "description": "The expression's result for wealthTheirs. Same shape as the expression's own endpoint response data.",
+                          "properties": {
+                            "phrase": {
+                              "description": "A phrase of the result (title-cased for use as a standalone label).",
+                              "example": "274 Millennia (273,973 Years)",
+                              "type": "string"
+                            },
+                            "scale": {
+                              "description": "A complete sentence providing context for the result (sentence-cased for use as inline prose).",
+                              "example": "That's approximately 1.6 times as long ago as when Homo Sapiens began wearing primitive clothing (≈170K BCE).",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "sentence": {
+                              "description": "A complete sentence summarizing the expression and its result (sentence-cased for use as inline prose).",
+                              "example": "A person with a wealth of $100,000,000,000 could spend $1,000 every day for 274 millennia (273,973 years)!",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "The type of result (kind of stacked money, kind of item, or null).",
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "unit": {
+                              "description": "The unit of the value (where applicable).",
+                              "example": "years",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "The raw numeric result for their wealth.",
+                              "example": 273972.602739726,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "unit",
+                            "type",
+                            "phrase",
+                            "sentence",
+                            "scale"
+                          ],
+                          "type": "object"
+                        },
+                        "resultYours": {
+                          "description": "The expression's result for wealthYours. Same shape as the expression's own endpoint response data.",
+                          "properties": {
+                            "phrase": {
+                              "description": "A phrase of the result (title-cased for use as a standalone label).",
+                              "example": "100 Days",
+                              "type": "string"
+                            },
+                            "scale": {
+                              "description": "A complete sentence providing context for the result (sentence-cased for use as inline prose).",
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "sentence": {
+                              "description": "A complete sentence summarizing the expression and its result (sentence-cased for use as inline prose).",
+                              "example": "A person with a wealth of $100,000 could spend $1,000 every day for 100 days!",
+                              "type": "string"
+                            },
+                            "type": {
+                              "description": "The type of result (kind of stacked money, kind of item, or null).",
+                              "example": null,
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "unit": {
+                              "description": "The unit of the value (where applicable).",
+                              "example": "years",
+                              "nullable": true,
+                              "type": "string"
+                            },
+                            "value": {
+                              "description": "The raw numeric result for your wealth.",
+                              "example": 0.273972602739726,
+                              "type": "number"
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "unit",
+                            "type",
+                            "phrase",
+                            "sentence",
+                            "scale"
+                          ],
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "expression",
+                        "resultTheirs",
+                        "resultYours",
+                        "ratio"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": "success",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "data"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "a JSON object with response data"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "example": 400,
+                          "type": "integer"
+                        },
+                        "message": {
+                          "description": "A human-readable error message like 'Expression Invalid', 'Your Wealth Zero', 'Their Wealth Missing', etc.",
+                          "example": "Their Wealth Missing",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": "error",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "a JSON object with error data"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "properties": {
+                        "code": {
+                          "example": 429,
+                          "type": "integer"
+                        },
+                        "details": {
+                          "example": "Rate limit exceeded. Try again in 60 seconds.",
+                          "type": "string"
+                        },
+                        "message": {
+                          "example": "Too Many Requests",
+                          "type": "string"
+                        },
+                        "retryAfter": {
+                          "description": "The number of seconds remaining until the rate-limit window resets.",
+                          "example": 60,
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message",
+                        "details",
+                        "retryAfter"
+                      ],
+                      "type": "object"
+                    },
+                    "status": {
+                      "example": "error",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "error"
+                  ],
+                  "type": "object"
+                }
+              }
+            },
+            "description": "rate limit exceeded",
+            "headers": {
+              "Retry-After": {
+                "description": "The number of seconds remaining until the rate-limit window resets.",
+                "schema": {
+                  "example": 60,
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "securitySource": "definition"
+      }
+    }
   }
 }
