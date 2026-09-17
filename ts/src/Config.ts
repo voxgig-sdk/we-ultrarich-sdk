@@ -127,15 +127,15 @@ class Config {
 
     entity: {
       
-      comparison: {
-      },
-
-      discovery: {
-      },
-
-      wealth_expression: {
-      },
-
+        comparison: {
+        },
+  
+        discovery: {
+        },
+  
+        wealth_expression: {
+        },
+  
     }
   }
 

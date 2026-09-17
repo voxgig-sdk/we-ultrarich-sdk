@@ -105,12 +105,12 @@ local result, err = client:Comparison():load({ expression = "example", wealth_th
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/we-ultrarich-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
-| Python | `voxgig-sdk-we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
-| PHP | `voxgig-sdk/we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
+| TypeScript | `@voxgig-sdk/we-ultrarich-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/tags) |
+| Python | `voxgig-sdk-we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/tags) |
+| PHP | `voxgig-sdk/we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/we-ultrarich-sdk/go` | `go get github.com/voxgig-sdk/we-ultrarich-sdk/go@latest` |
-| Ruby | `voxgig-sdk-we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
-| Lua | `voxgig-sdk-we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/releases) |
+| Ruby | `voxgig-sdk-we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/tags) |
+| Lua | `voxgig-sdk-we-ultrarich` | publish pending — [install from git tag](https://github.com/voxgig-sdk/we-ultrarich-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/we-ultrarich-sdk/go-cli` | `go install github.com/voxgig-sdk/we-ultrarich-sdk/go-cli/cmd/we-ultrarich@latest` |
 | Go MCP server | `github.com/voxgig-sdk/we-ultrarich-sdk/go-mcp` | `go get github.com/voxgig-sdk/we-ultrarich-sdk/go-mcp@latest` |
 
